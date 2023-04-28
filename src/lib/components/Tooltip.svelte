@@ -12,6 +12,7 @@
     export let animation = '';
     export let arrow = true;
     export let autoPosition = false;
+    export let testId = '';
   
     let containerRef = null;
     let tooltipRef = null;
@@ -89,7 +90,7 @@
     $: isComponent = typeof content === 'object';
   </script>
   
-  <span bind:this={containerRef} class="tooltip-container">
+  <span data-cy-id={testId !== '' ? testId : null} bind:this={containerRef} class="tooltip-container">
     <slot />
     <div
       bind:this={tooltipRef}
