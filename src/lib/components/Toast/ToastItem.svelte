@@ -122,6 +122,8 @@
       background: var(--toastBackground, rgba(66, 66, 66, 0.9));
       color: var(--toastColor, 'amadeusgrey');
       border: var(--toastBorder, none);
+      border-left-width: var(--toastLeftBorder, 3px);
+      border-left-color: var(--toastLeftBorderColor, none);
       border-radius: var(--toastBorderRadius, 0.125rem);
       position: relative;
       display: flex;
