@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { ButtonType } from "$lib/enums/buttontype.enum";
-	import { Size } from "$lib/enums/size.enum";
-	import { TEST_IDS } from "$lib/enums/testconstants.enum";
-	
+	import { ButtonType } from '$lib/enums/buttontype.enum';
+	import { Size } from '$lib/enums/size.enum';
+	import { TEST_IDS } from '$lib/enums/testconstants.enum';
+
 	export let clickLogic: Function = () => {};
 	export let label: string = '';
 	export let isDisabled: boolean = false;
@@ -25,7 +25,6 @@
 				return 'am-c-df_btn__xl';
 		}
 	}
-
 </script>
 
 <button

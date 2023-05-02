@@ -5,5 +5,5 @@ export enum TEST_IDS {
 	YesNoPopupConfirmButtonId = 'YesNoPopupConfirmButtonId',
 	YesNoPopupCancelButtonId = 'YesNoPopupCancelButtonId',
 	YesNoPopupTestOutsideDivId = 'YesNoPopupTestOutsideDivId',
-	YesNoPopupTestCommandId = 'YesNoPopupTestCommandId',
+	YesNoPopupTestCommandId = 'YesNoPopupTestCommandId'
 }

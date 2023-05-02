@@ -4,18 +4,16 @@ import { resolve } from 'path';
 import path from 'path';
 
 export default defineConfig({
-	plugins: [
-		sveltekit(),
-	],
+	plugins: [sveltekit()],
 	test: {
 		globals: true,
 		environment: 'jsdom',
-		setupFiles: ["./src/setupTest.js"],
+		setupFiles: ['./src/setupTest.js']
 	},
 	resolve: {
 		alias: {
 			// $src: resolve('./src/'),
-			$lib: resolve('./src/lib/'),
+			$lib: resolve('./src/lib/')
 			// $components: resolve('./src/lib/components/'),
 			// $config: resolve('./src/lib/config/'),
 			// $enums: resolve('./src/lib/enums')
@@ -25,9 +23,9 @@ export default defineConfig({
 	},
 	build: {
 		lib: {
-		  entry: path.resolve(__dirname, './src/lib/index.js'),
-		  name: 'lbi-common',
-		  fileName: (format) => `lbi-common.${format}.js`
+			entry: path.resolve(__dirname, './src/lib/index.js'),
+			name: 'lbi-common',
+			fileName: (format) => `lbi-common.${format}.js`
 		}
-	  }
-})
+	}
+});
