@@ -49,6 +49,7 @@
 			use:typeAction
 			{placeholder}
 			name={inputName}
+			id={inputName}
 			{min}
 			{max}
 			autocomplete="off"

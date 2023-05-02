@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/svelte';
+import { render, screen, waitFor } from '@testing-library/svelte';
 
 import Loading from './Loading.svelte';
 
