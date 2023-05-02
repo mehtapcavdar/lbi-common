@@ -97,12 +97,12 @@ function createToast() {
   function success(m) {
     pop()
 	  push(`<div class="flex items-center">
-				<svg viewBox="0 0 512 512" width="17" height="17" class="fill-amadeusgreen"><path d="${CHECK_SVG}"/></svg>
-				<div class="pl-2">`+ m +`</div></div>`, {
-      classes:['bg-amadeuslightgreen', 'border-l-[#008540]'],
+				<svg viewBox="0 0 512 512" width="17" height="17" fill="#008540"><path d="${CHECK_SVG}"/></svg>
+				<div style="padding-left: 0.5rem">`+ m +`</div></div>`, {
       theme: {
-        '--toastBackground': 'bg-amadeuslightgreen',
-        '--toastBorder':'1px solid #00854066'
+        '--toastBackground': '#f2f9f5',
+        '--toastBorder':'1px solid #00854066',
+        '--toastLeftBorderColor': '#008540'
 		  }
     })
   }
@@ -110,12 +110,12 @@ function createToast() {
   function info(m) {
     pop()
     push(`<div class="flex items-center">
-          <svg viewBox="0 0 512 512" width="17" height="17" class="fill-amadeuseasternblue"><path d="${INFO_SVG}"/></svg>
-          <div class="pl-2">`+ m +`</div></div>`, {
-      classes:['bg-amadeuspaleblue', 'border-l-[#1a7ead]'],
+          <svg viewBox="0 0 512 512" width="17" height="17" fill="#1a7ead"><path d="${INFO_SVG}"/></svg>
+          <div style="padding-left: 0.5rem">`+ m +`</div></div>`, {
       theme: {
-        '--toastBackground': 'bg-amadeuspaleblue',
-        '--toastBorder':'1px solid #1a7ead66'
+        '--toastBackground': '#F4F9FB',
+        '--toastBorder':'1px solid #1a7ead66',
+        '--toastLeftBorderColor': '#1a7ead'
       }
     })
   } 
@@ -123,12 +123,12 @@ function createToast() {
 function warning(m) {
   pop()
 	push(`<div class="flex items-center">
-				<svg viewBox="0 0 574 512" width="17" height="17" class="fill-amadeusorange"><path d="${TRIANGLE_SVG}"/></svg>
-				<div class="pl-2">m}</div>`+ m +`</div>`, {
-		classes:['bg-amadeuslightorange', 'border-l-[#f7a827]'],
+				<svg viewBox="0 0 574 512" width="17" height="17" fill="#f7a827"><path d="${TRIANGLE_SVG}"/></svg>
+				<div style="padding-left: 0.5rem">`+ m +`</div></div>`, {
 		theme: {
-			'--toastBackground': 'bg-amadeuslightorange',
-			'--toastBorder':'1px solid #f7a82766'
+			'--toastBackground': '#fffbf4',
+			'--toastBorder':'1px solid #f7a82766',
+      '--toastLeftBorderColor': '#f7a827'
 		}
 	})
 }
@@ -136,12 +136,13 @@ function warning(m) {
 function failure(m) {
   pop()
 	toast.push(`<div class="flex items-center">
-				<svg viewBox="0 0 512 512" width="17" height="17" class="fill-amadeusred"><path d="${MINUS_ERROR_SVG}"/></svg>
-				<div class="pl-2">` + m + `</div></div>`, {
-		classes:['bg-amadeuslightred', 'border-l-[#c60000]'],
+				<svg viewBox="0 0 512 512" width="17" height="17" fill="#c60000"><path d="${MINUS_ERROR_SVG}"/></svg>
+				<div style="padding-left: 0.5rem">`+ m +`</div></div>`, {
 		theme: {
-			'--toastBackground': 'bg-amadeuslightred',
-			'--toastBorder':'1px solid #c6000066'
+			'--toastBackground': '#fcf2f2',
+			'--toastBorder':'1px solid #c6000066',
+      '--toastLeftBorderColor': '#c60000'
+      
 		}
 	})
 }
