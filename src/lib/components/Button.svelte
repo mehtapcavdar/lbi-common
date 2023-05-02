@@ -3,8 +3,8 @@
 	import { Size } from "$lib/enums/size.enum";
 	import { TEST_IDS } from "$lib/enums/testconstants.enum";
 	
-	export let clickLogic: Function;
-	export let label: string;
+	export let clickLogic: Function = () => {};
+	export let label: string = '';
 	export let isDisabled: boolean = false;
 	export let additionalClasses: string = '';
 	export let type: ButtonType = ButtonType.Transparent;
