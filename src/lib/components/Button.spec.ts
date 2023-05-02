@@ -1,32 +1,37 @@
+import { render, screen, fireEvent } from "@testing-library/svelte";
+
+import { ButtonType } from "$lib/enums/buttontype.enum";
 import Button from "./Button.svelte";
+import { getButtonSize }
+import { Size } from "$lib/enums/size.enum";
+import { TEST_IDS } from "$lib/enums/testconstants.enum";
 
 describe("Button Component", () => {
-    let instance = null;
+    const buttonProps = { 
+        label: 'Test Button', 
+        isDisabled: true,
+        additionalClasses: 'test-class',
+        type: ButtonType.Primary,
+        buttonSize: Size.Large,
+        testingId: `${TEST_IDS.ButtonId}-Test Button`,
+        clickLogic: () => vi.fn()
 
-    beforeEach(() => {
-        //create instance of the component and mount it
-    })
+    };
 
-    afterEach(() => {
-        //destory/unmount instance
-    })
+    test('should render a button with all props', async () => {
+       render(Button, { props: buttonProps });
 
-    it("should render the component", () => {
-        // Create a new container for the test
-        const host = document.createElement('div');
-
-        // Append the new container in the HTML body
-        document.body.appendChild(host);
-
-        // Create an instance of the vertical tab
-        const instance = new Button({ target: host, props: {label: 'Test Button!'} });
-
-        // Check if the instance has value
-        expect(instance).toBeTruthy();
-
-        // Test if we can find the "First Tab Heading"
-        expect(host.innerHTML).toContain("Test Button!");
-
+        expect(screen.getByText(buttonProps.label)).toBeInTheDocument();
+        expect(screen.getByText(buttonProps.label)).toBeDisabled();
+        expect(screen.getByText(buttonProps.label)).toHaveClass('test-class am-c-df_btn am-c-df_btn-primary am-c-df_btn__lg');
+        expect(screen.getByText(buttonProps.label)).toHaveAttribute('data-cy-id', 'ButtonId-Test Button');
     });
 
+    test.todo('should test click event', async () => {
+        render(Button, { props: buttonProps });
+        const mockMethod = vi.spyOn(Button.arguments, 'clickLogic');
+    
+        await fireEvent.click(screen.getByText(buttonProps.label));
+        expect(mockMethod).toHaveBeenCalled();
+      });
 })

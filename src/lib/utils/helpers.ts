@@ -1,5 +1,5 @@
 export function removeLeadingZero(input: string): string {
-	return input.replace(/^0+(?=\d)/, '');
+	return input.replace(/^0+/, '');
 }
 
 /** Dispatch event on click outside of node */

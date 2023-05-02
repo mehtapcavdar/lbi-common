@@ -1,15 +1,16 @@
 import { defineConfig } from 'vitest/config';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { resolve } from 'path';
 import path from 'path';
 
 export default defineConfig({
 	plugins: [
-		svelte({ hot: !process.env.VITEST }),
+		sveltekit(),
 	],
 	test: {
+		globals: true,
 		environment: 'jsdom',
-		globals: true
+		setupFiles: ["./src/setupTest.js"],
 	},
 	resolve: {
 		alias: {
@@ -27,18 +28,6 @@ export default defineConfig({
 		  entry: path.resolve(__dirname, './src/lib/index.js'),
 		  name: 'lbi-common',
 		  fileName: (format) => `lbi-common.${format}.js`
-		},
-		rollupOptions: {
-		  // make sure to externalize deps that shouldn't be bundled
-		  // into your library
-		  external: ['svelte'],
-		  output: {
-			// Provide global variables to use in the UMD build
-			// for externalized deps
-			globals: {
-			  svelte: 'Svelte'
-			}
-		  }
 		}
 	  }
 })
