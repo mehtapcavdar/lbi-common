@@ -30,11 +30,12 @@ describe('Button Component', () => {
 		);
 	});
 
-	test.todo('should test click event', async () => {
-		render(Button, { props: buttonProps });
-		const mockMethod = vi.spyOn(Button.arguments, 'clickLogic');
+	test('should test click event', async () => {
+        const clickFunc = vi.fn();
+		const { getByRole } = render(Button, { props: {...buttonProps, clickLogic: clickFunc} });
+		const button = getByRole('button');
 
-		await fireEvent.click(screen.getByText(buttonProps.label));
-		expect(mockMethod).toHaveBeenCalled();
+		await fireEvent.click(button);
+		expect(clickFunc).toHaveBeenCalled();
 	});
 });

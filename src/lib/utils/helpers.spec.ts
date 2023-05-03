@@ -1,6 +1,5 @@
 import {
 	removeLeadingZero,
-	clickOutside,
 	formatVariableKey,
 	getMinWidth,
 	isInViewport

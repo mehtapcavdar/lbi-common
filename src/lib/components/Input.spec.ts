@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/svelte'; 
+import { tick } from 'svelte';
 
 import Input from './Input.svelte';
 import { InputTypes } from '$lib/enums/inputtypes.enum';
@@ -160,11 +161,14 @@ describe('Input Component', () => {
         expect(errorDiv).toBeInTheDocument().toContainHTML('Error Test!');
     });
 
-    test.todo('should correctly bind value', async () => {});
+    test('should correctly bind value', async () => { 
+        render(Input, { props: inputProps });
+        const input = screen.getByPlaceholderText(inputProps.placeholder) as HTMLInputElement;
 
-    test.todo('should dispatch event on blur', async () => {});
+        fireEvent.change(input, {target: { value: 'test value' } });
+        await tick();
 
-    test.todo('should dispatch event on change', async () => {});
+        expect(input.value).toEqual('test value');
 
-    test.todo('should dispatch event on input', async () => {});
+    });
 });

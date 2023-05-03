@@ -28,12 +28,12 @@ describe('Icon Component', () => {
 		expect(svgIcon).toHaveAttribute('data-cy-id', 'test-icon');
 	});
 
-	test.todo('should test click event', async () => {
-		const { container } = render(Icon, { props: iconProps });
-		const svgIcon = container.querySelector("[data-cy-id]='test-icon'") as HTMLImageElement;
-		const mockMethod = vi.spyOn(Icon.arguments, 'clickLogic');
+	test('should test click event', async () => {
+        const clickFunc = vi.fn();
+		const { container } = render(Icon, { props: {...iconProps, clickLogic: clickFunc} });
+		const svgIcon = container.querySelector("[data-cy-id='test-icon']") as HTMLImageElement;
 
 		await fireEvent.click(svgIcon);
-		expect(mockMethod).toHaveBeenCalled();
+		expect(clickFunc).toHaveBeenCalled();
 	});
 });
