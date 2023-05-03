@@ -1,7 +1,6 @@
 export function removeLeadingZero(input: string): string {
 	return input.replace(/^0+/, '');
 }
-
 export const formatVariableKey = (str) => {
 	return str
 		.replace(/-_$/g, '')
@@ -31,4 +30,5 @@ export const isInViewport = (element) => {
 		rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
 		rect.right <= (window.innerWidth || document.documentElement.clientWidth)
 	);
-};
+  };
+  
