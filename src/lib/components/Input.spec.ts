@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/svelte';
+import { render, screen, fireEvent, waitFor } from '@testing-library/svelte'; 
 
 import Input from './Input.svelte';
 import { InputTypes } from '$lib/enums/inputtypes.enum';
@@ -46,6 +46,7 @@ describe('Input Component', () => {
 		const { container } = render(Input, { props: inputProps });
         const labelForInput = container.querySelector("[for='input-name']") as HTMLLabelElement;
         const outerDiv = container.querySelector('.test-class') as HTMLDivElement;
+        const errorDiv = container.querySelector("[data-cy-id='errormessage']") as HTMLDivElement;
 
         expect(outerDiv).toBeInTheDocument();
         expect(outerDiv).toHaveClass('test-class');
@@ -70,6 +71,8 @@ describe('Input Component', () => {
             'data-cy-id',
             'test-input'
         );
+
+        expect(errorDiv).toBeInTheDocument().toContainHTML('');
 	});
 
 	test('should render a required input', async () => {
@@ -107,15 +110,55 @@ describe('Input Component', () => {
         waitFor(() => expect(extraSignDiv).toBeInTheDocument());
     });
 
-    test.todo('should render a numeric input', async () => {});
+    test('should render a numeric input', async () => {
+        inputProps.type = InputTypes.Number;
+        render(Input, { props: inputProps });
+        const input = screen.getByPlaceholderText(inputProps.placeholder) as HTMLInputElement;
 
-    test.todo('should render a numeric input with min value', async () => {});
+        expect(input).toHaveClass('pr-0');
+    });
 
-    test.todo('should render a numeric input with max value', async () => {});
+    test('should render a numeric input with min value', async () => {
+        inputProps.type = InputTypes.Number;
+        inputProps.min = '2';
+        render(Input, { props: inputProps });
+        const input = screen.getByPlaceholderText(inputProps.placeholder) as HTMLInputElement;
 
-    test.todo('should render a numeric input with min & max value', async () => {});
+        expect(input).toHaveClass('pr-0');
+        expect(input).toHaveAttribute('min', '2');
+    });
 
-    test.todo('should render an error message', async () => {});
+    test('should render a numeric input with max value', async () => {
+        inputProps.type = InputTypes.Number;
+        inputProps.max = '2';
+        render(Input, { props: inputProps });
+        const input = screen.getByPlaceholderText(inputProps.placeholder) as HTMLInputElement;
+
+        expect(input).toHaveClass('pr-0');
+        expect(input).toHaveAttribute('max', '2');
+    });
+
+    test('should render a numeric input with min & max value', async () => {
+        inputProps.type = InputTypes.Number;
+        inputProps.min= '0';
+        inputProps.max = '10';
+        render(Input, { props: inputProps });
+        const input = screen.getByPlaceholderText(inputProps.placeholder) as HTMLInputElement;
+
+        expect(input).toHaveClass('pr-0');
+        expect(input).toHaveAttribute('min', '0');
+        expect(input).toHaveAttribute('max', '10');
+    });
+
+    test('should render an error message', async () => {
+        inputProps.inputError = 'Error Test!';
+        render(Input, { props: inputProps });
+        const input = screen.getByPlaceholderText(inputProps.placeholder) as HTMLInputElement;
+        const errorDiv = document.querySelector("[data-cy-id='errormessage']") as HTMLDivElement;
+
+        expect(input).toBeInTheDocument();
+        expect(errorDiv).toBeInTheDocument().toContainHTML('Error Test!');
+    });
 
     test.todo('should correctly bind value', async () => {});
 

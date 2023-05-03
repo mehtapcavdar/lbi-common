@@ -24,6 +24,15 @@
 	function typeAction(node: any) {
 		node.type = type;
 	}
+
+	function handleNumbers(){
+		inputValue = removeLeadingZero(inputValue)
+		if(min !== '' && +min > +inputValue) {
+			inputValue = min.toString();
+		} else if (max !== '' && +max < +inputValue) {
+			inputValue = max.toString();
+		}
+	}
 </script>
 
 <div class={classes}>
@@ -42,7 +51,7 @@
 			bind:value={inputValue}
 			on:blur={(event) => {
 				dispatch('onInputBlur', event),
-					isTypeNumber ? (inputValue = removeLeadingZero(inputValue)) : null;
+					isTypeNumber ? (handleNumbers()) : null;
 			}}
 			on:input={(event) => dispatch('onInput', event)}
 			on:change={(event) => dispatch('onInputChanges', event)}
