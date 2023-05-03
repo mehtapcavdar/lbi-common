@@ -1,9 +1,4 @@
-import {
-	removeLeadingZero,
-	formatVariableKey,
-	getMinWidth,
-	isInViewport
-} from './helpers';
+import { removeLeadingZero } from './helpers';
 
 describe('Helper functions', () => {
 	test('should test removeLeadingZero', () => {
@@ -14,12 +9,4 @@ describe('Helper functions', () => {
 		expect(removeLeadingZero('101')).toBe('101');
 		expect(removeLeadingZero('0101 0101')).toBe('101 0101');
 	});
-
-	test.todo('should test clickOutside', () => {});
-
-	test.todo('should test formatVariableKey', () => {});
-
-	test.todo('should test getMinWidth', () => {});
-
-	test.todo('should test isInViewport', () => {});
 });
