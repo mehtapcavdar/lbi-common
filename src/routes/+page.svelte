@@ -1,6 +1,6 @@
 <script lang="ts">
     import "../app.css";
-	import { Icon, Input, YesNoPopup, toast } from "$lib";
+	import { Icon, Input, toast } from "$lib";
 	import SvelteToast from "$lib/components/Toast/SvelteToast.svelte";
 
 
@@ -16,8 +16,7 @@
 </script>
 <SvelteToast/>
 <Tooltip content={'mehtap'}
-    theme="custom-tooltip"
-    position="right" 
+    position="bottom" 
     align="center" 
     animation="slide">
     <Icon classes={'cursor-pointer mt-0.5'} 
@@ -31,12 +30,6 @@
     clickLogic={() => true}
     classes={'cursor-pointer'}
     width={17} height={17} direction={Direction.Down}/>
-    <YesNoPopup belongingId=1 selectedId=1 
-        textDeleteQuestion='are you sure?'
-        textDeleteHeader='Delete Legal Entity'
-        buttonDeleteNo='No' buttonDeleteYes='Yes'
-                on:actionCanceled={() => toast.success('success')}  
-                on:actionConfirmed={() => toast.failure('deleted')} />
 
 <Input
     classes="w-full"

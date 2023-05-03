@@ -5,7 +5,7 @@
 	export let viewBox: string = '0 0 448 512';
 	export let height: number = 22;
 	export let width: number = 22;
-	export let fill: string = 'fill-amadeusblue';
+	export let fill: string = '#005eb8';
 	export let direction: Direction = Direction.Left;
 	export let clickLogic: Function | null = null;
 	export let classes: string = '';
@@ -34,7 +34,8 @@
 	preserveAspectRatio="xMinYMax meet"
 	{height} {width}
 	xmlns="http://www.w3.org/2000/svg"
-	class="{getIconDirection(direction)} {fill} {classes}"
+	class="{getIconDirection(direction)} {classes}"
+	fill={fill}
 	data-cy-id={testId}
 	{viewBox}
 >
