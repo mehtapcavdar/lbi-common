@@ -1,25 +1,7 @@
 export function removeLeadingZero(input: string): string {
 	return input.replace(/^0+(?=\d)/, '');
 }
-
-/** Dispatch event on click outside of node */
-export function clickOutside(node) {
-	const handleClick = (event) => {
-	  if (node && !node.contains(event.target) && !event.defaultPrevented) {
-		node.dispatchEvent(new CustomEvent('click_outside', node));
-	  }
-	};
-  
-	document.addEventListener('click', handleClick, true);
-  
-	return {
-	  destroy() {
-		document.removeEventListener('click', handleClick, true);
-	  },
-	};
-  }
-  
-  export const formatVariableKey = (str) => {
+export const formatVariableKey = (str) => {
 	return str
 	  .replace(/-_$/g, '')
 	  .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
@@ -49,3 +31,4 @@ export function clickOutside(node) {
 	  rect.right <= (window.innerWidth || document.documentElement.clientWidth)
 	);
   };
+  
