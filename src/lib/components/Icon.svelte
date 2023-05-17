@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Direction } from "$lib/enums/direction.enum";
+	import { Direction } from '$lib/enums/direction.enum';
 
 	export let iconSVG: string;
 	export let viewBox: string = '0 0 448 512';
@@ -45,7 +45,8 @@
 	on:click={(e) => (clickLogic ? clickLogic(e) : null)}
 	on:keypress={(e) => handleKeyboardPress(e)}
 	preserveAspectRatio="xMinYMax meet"
-	{height} {width}
+	{height}
+	{width}
 	xmlns="http://www.w3.org/2000/svg"
 	class="{getIconDirection(direction)} {classes}"
 	fill={fill}

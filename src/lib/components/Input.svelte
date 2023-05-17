@@ -24,6 +24,15 @@
 	function typeAction(node: any) {
 		node.type = type;
 	}
+
+	function handleNumbers(){
+		inputValue = removeLeadingZero(inputValue)
+		if(min !== '' && +min > +inputValue) {
+			inputValue = min.toString();
+		} else if (max !== '' && +max < +inputValue) {
+			inputValue = max.toString();
+		}
+	}
 </script>
 
 <div class={classes}>
@@ -32,25 +41,24 @@
 			*
 		{/if}</label
 	>
-	<div class="relative {labelName ? 'pt-2': ''}">
+	<div class="relative {labelName ? 'pt-2' : ''}">
 		<input
 			data-cy-id={testId}
 			disabled={isDisabled}
 			readonly={isReadOnly}
 			class="appearance-none block w-full px-3 py-2 border border-amadeusgray300 placeholder-amadeusgray500 text-amadeusgray900 focus:outline-none focus:border-amadeusblue focus:z-10 sm:text-sm mb-1 focus:border rounded-sm min-w-fit mr-0
-        {inputError ? 'border-amadeusred' : ''} {isTypeNumber
-				? 'pr-0'
-				: ''} {classesForInput}"
+        {inputError ? 'border-amadeusred' : ''} {isTypeNumber ? 'pr-0' : ''} {classesForInput}"
 			bind:value={inputValue}
 			on:blur={(event) => {
 				dispatch('onInputBlur', event),
-					isTypeNumber ? (inputValue = removeLeadingZero(inputValue)) : null;
+					isTypeNumber ? (handleNumbers()) : null;
 			}}
 			on:input={(event) => dispatch('onInput', event)}
 			on:change={(event) => dispatch('onInputChanges', event)}
 			use:typeAction
 			{placeholder}
 			name={inputName}
+			id={inputName}
 			{min}
 			{max}
 			autocomplete="off"
@@ -63,8 +71,9 @@
 		{inputError}
 	</div>
 </div>
+
 <style>
-	::placeholder{
+	::placeholder {
 		font-style: italic;
 	}
 </style>
