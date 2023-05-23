@@ -10,6 +10,7 @@
 	export let clickLogic: Function | null = null;
 	export let classes: string = '';
 	export let testId: string = '';
+	export let tabIndex: number = 0;
 
 	function getIconDirection(direction: Direction): string {
 		switch (direction) {
@@ -26,11 +27,23 @@
 				return 'rotate-90';
 		}
 	}
+
+	function handleKeyboardPress(e: KeyboardEvent): Function | null {
+		if (clickLogic) {
+			switch(e.key) {
+				case 'Enter': 
+					return clickLogic(e);
+				default:
+					return null;
+			}
+		} 
+		return null;
+	}
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <svg
 	on:click={(e) => (clickLogic ? clickLogic(e) : null)}
+	on:keypress={(e) => handleKeyboardPress(e)}
 	preserveAspectRatio="xMinYMax meet"
 	{height}
 	{width}
@@ -39,6 +52,8 @@
 	fill={fill}
 	data-cy-id={testId}
 	{viewBox}
+	tabindex={clickLogic ? tabIndex : null}
+	role={clickLogic ? 'button': null}
 >
 	<path d={iconSVG} />
 </svg>
