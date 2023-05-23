@@ -23,6 +23,10 @@
 {/if}
 
 <style>
+	.am-c-loading {
+		animation: rotation 1s infinite linear;
+	}
+	
 	.am-c-loading__screen-center {
 		top: 50%;
 		left: 50%;

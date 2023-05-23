@@ -51,8 +51,28 @@
 
 .am-c-input {
 	min-width: 240px;
-	@apply appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:border-amadeusblue focus:z-10 sm:text-sm mb-4 focus:border;
+	appearance: none;
+	position: relative;
+	display: block;
+	width: 100%;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem; 
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem; 
+	border-width: 1px;
+	border-color: rgb(209 213 219);
+	color: rgb(17 24 39);	
+	margin-bottom: 1rem;
 	border-radius: 0.175rem;
+}:focus {
+	outline: none;
+	border-color: #005eb8;
+	z-index: 10;
+	border-width: 1px;
+	
+}::placeholder{
+	font-style: italic;
+	color: #a0aec0;
 }
 
 .am-c-input--on-error {
@@ -109,14 +129,4 @@
 
 .highlighting:hover {
 	@apply bg-amadeuslightblue dark:bg-amadeusdarkblue;
-}
-
-.modal {
-	display: block;
-	z-index: 99;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	@apply bg-white dark:bg-amadeusgray700 text-black dark:text-white;
 }

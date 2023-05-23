@@ -1,6 +1,6 @@
 <script lang="ts">
     import "../app.css";
-	import { Icon, Input, toast } from "$lib";
+	import { Button, ButtonType, Icon, Input, Size, toast } from "$lib";
 	import SvelteToast from "$lib/components/Toast/SvelteToast.svelte";
 
 
@@ -39,3 +39,7 @@
     placeholder={'hallo'}
     testId={'nameInput'}
 />
+<Button label={'mcEierpunsch'} type={ButtonType.Primary}
+            additionalClasses="border-red-900"
+            buttonSize={Size.Small} 
+            clickLogic={() => toast.success('mehtap')}/>
