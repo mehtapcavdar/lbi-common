@@ -15,7 +15,7 @@
 		class={isScreenCentered ? 'am-c-loading__screen-center' : ''}
 		data-cy-id={testId !== '' ? testId : null}
 	>
-		<img {width} {height} src="/images/spinner.svg" alt="Loading..." class="am-c-loading" />
+		<img {width} {height} src="images/spinner.svg" alt="Loading..." class="am-c-loading" />
 	</div>
 {:else}
 	<div
@@ -23,7 +23,7 @@
 		data-cy-id={testId !== '' ? testId : null}
 		out:fade={{ duration: loadingAnimationDuration }}
 	>
-		<img {width} {height} src="/images/spinner.svg" alt="Loading..." class="am-c-loading" />
+		<img {width} {height} src="images/spinner.svg" alt="Loading..." class="am-c-loading" />
 	</div>
 {/if}
 
