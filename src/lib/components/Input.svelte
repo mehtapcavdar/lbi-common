@@ -24,6 +24,15 @@
 	function typeAction(node: any) {
 		node.type = type;
 	}
+
+	function handleNumbers(){
+		inputValue = removeLeadingZero(inputValue)
+		if(min !== '' && +min > +inputValue) {
+			inputValue = min.toString();
+		} else if (max !== '' && +max < +inputValue) {
+			inputValue = max.toString();
+		}
+	}
 </script>
 
 <div class={classes}>
@@ -32,7 +41,7 @@
 			*
 		{/if}</label
 	>
-	<div class="relative {labelName ? 'pt-2': ''}">
+	<div class="relative {labelName ? 'pt-2' : ''}">
 		<input
 			data-cy-id={testId}
 			disabled={isDisabled}
@@ -44,13 +53,14 @@
 			bind:value={inputValue}
 			on:blur={(event) => {
 				dispatch('onInputBlur', event),
-					isTypeNumber ? (inputValue = removeLeadingZero(inputValue)) : null;
+					isTypeNumber ? (handleNumbers()) : null;
 			}}
 			on:input={(event) => dispatch('onInput', event)}
 			on:change={(event) => dispatch('onInputChanges', event)}
 			use:typeAction
 			{placeholder}
 			name={inputName}
+			id={inputName}
 			{min}
 			{max}
 			autocomplete="off"
@@ -63,6 +73,7 @@
 		{inputError}
 	</div>
 </div>
+
 <style>
 	.am-c-input {
 		min-width: 240px;
