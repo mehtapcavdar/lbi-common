@@ -1,6 +1,6 @@
 <script lang="ts">
     import "../app.css";
-	import { Button, ButtonType, Icon, Input, Size, toast } from "$lib";
+	import { Button, ButtonType, Icon, Input, Size, TRASH_SVG, toast } from "$lib";
 	import SvelteToast from "$lib/components/Toast/SvelteToast.svelte";
 
 	import Tooltip from '$lib/components/Tooltip.svelte';
