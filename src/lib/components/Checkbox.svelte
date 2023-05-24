@@ -13,17 +13,50 @@
 	const dispatch = createEventDispatcher();
 </script>
 
-<div class="flex flex-row items-center mb-6 {classes}">
+<div class="checkbox-wrapper {classes}">
 	<input
 		id={inputName}
 		{required}
 		data-cy-id={testId}
 		type="checkbox"
-		class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded cursor-pointer {classesForInput}"
+		class="input-checkbox {classesForInput}"
 		bind:checked={inputValue}
 		on:change={(e) => dispatch('onInputChanges', e)}
 	/>
-	<label class="ml-2 text-gray-900 cursor-pointer leading-6 {classesForLabel}" for={inputName}
+	<label class="input-label {classesForLabel}" for={inputName}
 		>{labelName}</label
 	>
 </div>
+
+<style>
+	.checkbox-wrapper {
+		display: block;
+		min-height: 1.5rem;
+		line-height: 1.5rem;
+		margin-bottom: 0.125rem;
+	}
+
+	.input-checkbox {
+		height: 1rem;
+		width: 1rem;
+		margin-top: 0.25rem;
+		vertical-align: top;
+		background-color: #fff;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		border: 2px solid --var(--amadeus-color-gray-600);
+		border-radius: 0.125rem;
+		cursor: pointer;
+	}
+
+	input[type="checkbox"].input-checkbox:focus {
+		outline: 0;
+		box-shadow: 0 0 0 0.25rem #005eb840;
+	}
+
+	.input-label {
+		margin-left: 0.25rem;
+		cursor: pointer;
+	}
+</style>
