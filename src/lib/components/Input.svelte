@@ -46,7 +46,7 @@
 			data-cy-id={testId}
 			disabled={isDisabled}
 			readonly={isReadOnly}
-			class="am-c-input sm:text-sm rounded-sm min-w-fit mr-0
+			class="appearance-none block w-full px-3 py-2 border border-amadeusgray300 placeholder-amadeusgray500 text-amadeusgray900 focus:outline-none focus:border-amadeusblue focus:z-10 sm:text-sm mb-1 focus:border rounded-sm min-w-fit mr-0
         {inputError ? 'border-amadeusred' : ''} {isTypeNumber
 				? 'pr-0'
 				: ''} {classesForInput}"
@@ -75,31 +75,7 @@
 </div>
 
 <style>
-	.am-c-input {
-		min-width: 240px;
-		appearance: none;
-		position: relative;
-		display: block;
-		width: 100%;
-		padding-left: 0.75rem;
-		padding-right: 0.75rem; 
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem; 
-		border-width: 1px;
-		border-color: rgb(209 213 219);
-		color: rgb(17 24 39);	
-		margin-bottom: 1rem;
-		border-radius: 0.175rem;
-	}
-	:focus{
-		outline: none;
-		border-color: #005eb8;
-		z-index: 10;
-		border-width: 1px;
-		
-	}
-	::placeholder{
+	::placeholder {
 		font-style: italic;
-		color: #a0aec0;
 	}
 </style>

@@ -41,6 +41,7 @@
 	}
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <svg
 	on:click={(e) => (clickLogic ? clickLogic(e) : null)}
 	on:keypress={(e) => handleKeyboardPress(e)}
