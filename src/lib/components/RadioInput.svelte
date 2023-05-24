@@ -20,25 +20,25 @@
 	$: selectedOption, dispatch('optionSelected', selectedOption);
 </script>
 
-<div role="radiogroup" data-cy-id={testId} class="flex flex-col {classesForRadioGroup}">
+<div role="radiogroup" data-cy-id={testId} class="radiogroup {classesForRadioGroup}">
 	{#if labelText}
-		<span class="font-bold mb-2 {classesForLabel}">
+		<span class="label {classesForLabel}">
 			{labelText}
 			{#if isRequired}
-				<span aria-hidden="true" class="font-normal"> * </span>
+				<span aria-hidden="true" class="required-star"> * </span>
 			{/if}
 		</span>
 	{/if}
 
 	{#each options as option, index}
-		<div class="min-h-[1.5rem] pl-[1.375rem] mb-[0.125rem]" aria-required={isRequired}>
+		<div class="input-wrapper" aria-required={isRequired}>
 			<input
 				type="radio"
 				name={`${inputName}`}
 				value={option?.value}
 				class="
-					w-4 h-4 mt-1 align-top bg-no-repeat bg-center bg-contain border-amadeusgray600 border-2 rounded-full appearance-none pr-1 float-left ml-[-1.375rem] 
-					{isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'}
+					input-radio
+					{isDisabled ? 'input-cursor-disabled' : 'input-cursor'}
 					{inputError !== '' ? 'error' : 'normal'} 
 					{classesForInput}"
 				disabled={isDisabled}
@@ -52,7 +52,7 @@
 				for={`${inputName}`}
 				on:click={() => (selectedOption = option.value)}
 				class="
-					{isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'} 
+					{isDisabled ? 'input-cursor-disabled' : 'input-cursor'}
 					{inputError !== '' ? 'error' : 'normal'} 
 					{classesForInputLabel}"
 				data-cy-id={`${testId}-${index}-label`}
@@ -61,7 +61,7 @@
 			</label>
 		</div>
 	{/each}
-	<div data-cy-id="errormessage" class="text-amadeusred text-xs min-h-[20px] {classesForError}">
+	<div data-cy-id="errormessage" class="error-wrapper {classesForError}">
 		{inputError}
 	</div>
 </div>
@@ -115,5 +115,55 @@
 
 	input[type='radio'].error:checked {
 		border-color: var(--amadeus-color-red);
+	}
+
+	.radiogroup {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.label {
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+	}
+
+	.required-star {
+		font-weight: 400;
+	}
+
+	.input-wrapper {
+		min-height: 1.5rem;
+		padding-left: 1.375rem;
+		margin-bottom: 0.125rem;
+	}
+
+	.input-radio {
+		float: left;
+		width: 1rem;
+		height: 1rem;
+		vertical-align: top;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		border: 2px solid var(--amadeus-color-gray-600);
+		border-radius: 9999px;
+		appearance: none;
+		padding-right: 0.25rem;
+		margin-left: -1.375rem;
+	}
+
+	.error-wrapper {
+		color: var(--amadeus-color-red);
+		font-size: 0.75rem;
+    	line-height: 1rem;
+		min-height: 20px;
+	}
+
+	.input-cursor {
+		cursor: pointer;
+	}
+
+	.input-cursor-disabled {
+		cursor: not-allowed;
 	}
 </style>
