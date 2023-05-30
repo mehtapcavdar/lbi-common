@@ -14,7 +14,7 @@
 
 <div class={classes}>
 	<label for={inputName}>{labelName}</label>
-	<div class="relative {labelName ? 'pt-2': ''}">
+	<div style="position: relative; {labelName ? 'padding-top: 0.5rem;': ''}">
 		<select
 			name={inputName}
 			class="
@@ -32,7 +32,7 @@
 				{/each}
 		</select>
 	</div>
-	<div class="text-amadeusred text-xs {!inputError ? 'invisible' : ''}">{inputError}.</div>
+	<div class="am-c-error-message" style="{!inputError ? 'visibility: hidden;' : ''}">{inputError}.</div>
 </div>
 <style>
 	.am-c-input {
@@ -49,13 +49,13 @@
 		border-width: 1px;
 		border-color: rgb(209 213 219);
 		color: rgb(17 24 39);	
-		margin-bottom: 1rem;
+		margin-bottom: 0.125rem;
 		border-radius: 0.175rem;
 		border-radius: 0.175rem;
 	}
 	:focus{
 		outline: none;
-		border-color: #005eb8;
+		border-color: var(--amadeus-color-blue);
 		z-index: 10;
 		border-width: 1px;
 		
@@ -78,6 +78,12 @@
 	}
 	
 	.am-c-input--on-error {
-		border-color: #c60000;
+		border-color: var(--amadeus-color-red);
+	}
+
+	.am-c-error-message {
+		color: var(--amadeus-color-red);
+		font-size: 0.75rem;
+    	line-height: 1rem;
 	}
 </style>

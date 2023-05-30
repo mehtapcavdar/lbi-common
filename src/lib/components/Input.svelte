@@ -41,19 +41,22 @@
 			*
 		{/if}</label
 	>
-	<div class="relative {labelName ? 'pt-2' : ''}">
+	<div style="position: relative; {labelName ? 'padding-top: 0.5rem; ' : ''}">
 		<input
 			data-cy-id={testId}
 			disabled={isDisabled}
 			readonly={isReadOnly}
-			class="appearance-none block w-full px-3 py-2 border border-amadeusgray300 placeholder-amadeusgray500 text-amadeusgray900 focus:outline-none focus:border-amadeusblue focus:z-10 sm:text-sm mb-1 focus:border rounded-sm min-w-fit mr-0
-        {inputError ? 'border-amadeusred' : ''} {isTypeNumber
-				? 'pr-0'
-				: ''} {classesForInput}"
+			class="input-field
+        		{inputError ? 'border-amadeusred' : ''} 
+				{isTypeNumber ? 'pr-0' : ''} 
+				{classesForInput}"
+			style="
+				{inputError ? 'border-color: var(--amadeus-color-red)' : ''}
+				{isTypeNumber ? 'padding-right: 0px' : ''}"
 			bind:value={inputValue}
 			on:blur={(event) => {
-				dispatch('onInputBlur', event),
-					isTypeNumber ? (handleNumbers()) : null;
+				dispatch('onInputBlur', event);
+				isTypeNumber ? (handleNumbers()) : null;
 			}}
 			on:input={(event) => dispatch('onInput', event)}
 			on:change={(event) => dispatch('onInputChanges', event)}
@@ -66,10 +69,10 @@
 			autocomplete="off"
 		/>
 		{#if extraSign}
-			<div class="absolute bottom-2 z-50 left-1">{extraSign}</div>
+			<div class="extra-sign">{extraSign}</div>
 		{/if}
 	</div>
-	<div data-cy-id="errormessage" class="text-amadeusred text-xs min-h-[20px]">
+	<div data-cy-id="errormessage" class="error-message">
 		{inputError}
 	</div>
 </div>
@@ -77,5 +80,46 @@
 <style>
 	::placeholder {
 		font-style: italic;
+		color: var(--amadeus-color-gray-500);
+	}
+
+	.extra-sign {
+		position: absolute;
+		bottom: 0.5rem;
+		z-index: 50;
+		left: 0.25rem;
+	}
+
+	.error-message {
+		color: var(--amadeus-color-red);
+		font-size: 0.75rem;
+		line-height: 1rem;
+		min-height: 20px;
+	}
+
+	.input-field {
+		appearance: none;
+		display: block;
+		width: 100%;
+		min-width: fit-content;
+		padding: 0.5rem 0.75rem;
+		border: 1px solid var(--amadeus-color-gray-300);
+		border-radius: 0.125rem;
+		color: var(--amadeus-color-gray-900);
+		margin-bottom: 0.25rem;
+		margin-right: 0;
+
+		@media (min-width: 640px) {
+			font-size: 0.875rem;
+        	line-height: 1.25rem;
+		}
+
+	}
+
+	.input-field:focus {
+		outline: 2px solid transparent;
+   		outline-offset: 2px;
+		border-color: var(--amadeus-color-blue);
+		z-index: 10;
 	}
 </style>
