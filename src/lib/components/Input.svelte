@@ -41,18 +41,15 @@
 			*
 		{/if}</label
 	>
-	<div style="position: relative; {labelName ? 'padding-top: 0.5rem; ' : ''}">
+	<div class="lbi-input--wrapper-position {labelName ? 'lbi-input--wrapper-padding' : ''}">
 		<input
 			data-cy-id={testId}
 			disabled={isDisabled}
 			readonly={isReadOnly}
-			class="input-field
-        		{inputError ? 'border-amadeusred' : ''} 
-				{isTypeNumber ? 'pr-0' : ''} 
+			class="lbi-input--field
+        		{inputError ? 'lbi-input--field-error-border' : ''} 
+				{isTypeNumber ? 'lbi-input--field-number-padding' : ''} 
 				{classesForInput}"
-			style="
-				{inputError ? 'border-color: var(--amadeus-color-red)' : ''}
-				{isTypeNumber ? 'padding-right: 0px' : ''}"
 			bind:value={inputValue}
 			on:blur={(event) => {
 				dispatch('onInputBlur', event);
@@ -69,10 +66,10 @@
 			autocomplete="off"
 		/>
 		{#if extraSign}
-			<div class="extra-sign">{extraSign}</div>
+			<div class="lbi-input--extra-sign">{extraSign}</div>
 		{/if}
 	</div>
-	<div data-cy-id="errormessage" class="error-message">
+	<div data-cy-id="errormessage" class="lbi-input--error-message">
 		{inputError}
 	</div>
 </div>
@@ -80,32 +77,32 @@
 <style>
 	::placeholder {
 		font-style: italic;
-		color: var(--amadeus-color-gray-500);
+		color: #808080;
 	}
 
-	.extra-sign {
+	.lbi-input--extra-sign {
 		position: absolute;
 		bottom: 0.5rem;
 		z-index: 50;
 		left: 0.25rem;
 	}
 
-	.error-message {
-		color: var(--amadeus-color-red);
+	.lbi-input--error-message {
+		color: #c60000;
 		font-size: 0.75rem;
 		line-height: 1rem;
 		min-height: 20px;
 	}
 
-	.input-field {
+	.lbi-input--field {
 		appearance: none;
 		display: block;
 		width: 100%;
 		min-width: fit-content;
 		padding: 0.5rem 0.75rem;
-		border: 1px solid var(--amadeus-color-gray-300);
+		border: 1px solid #b3b3b3;
 		border-radius: 0.125rem;
-		color: var(--amadeus-color-gray-900);
+		color: #1a1a1a;
 		margin-bottom: 0.25rem;
 		margin-right: 0;
 
@@ -116,10 +113,26 @@
 
 	}
 
-	.input-field:focus {
+	.lbi-input--field:focus {
 		outline: 2px solid transparent;
    		outline-offset: 2px;
-		border-color: var(--amadeus-color-blue);
+		border-color: #005eb8;
 		z-index: 10;
+	}
+
+	.lbi-input--field-error-border {
+		border-color: #c60000;
+	}
+
+	.lbi-input--field-number-padding {
+		padding-right: 0;
+	}
+
+	.lbi-input--wrapper-position {
+		position: relative;
+	}
+
+	.lbi-input--wrapper-padding {
+		padding-top: 0.5rem;
 	}
 </style>
