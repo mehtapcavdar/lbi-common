@@ -14,12 +14,12 @@
 
 <div class={classes}>
 	<label for={inputName}>{labelName}</label>
-	<div class="relative {labelName ? 'pt-2': ''}">
+	<div class="lbi-select-wrapper {labelName ? 'lbi-select-wrapper-padding' : ''}">
 		<select
 			name={inputName}
 			class="
-                am-c-input am-c-input--auto-min-width am-c-select
-                {inputError ? 'am-c-input--on-error' : ''}
+                lbi-input lbi-input--auto-min-width lbi-select
+                {inputError ? 'lbi-input--on-error' : ''}
             "
 			bind:value={inputValue}
 			on:change={() => dispatch('onSelectChanges')}
@@ -32,44 +32,37 @@
 				{/each}
 		</select>
 	</div>
-	<div class="text-amadeusred text-xs {!inputError ? 'invisible' : ''}">{inputError}.</div>
+	<div class="lbi-error-message {!inputError ? 'lbi-error-message-hidden' : ''}">{inputError}.</div>
 </div>
 <style>
-	.am-c-input {
-		min-width: 240px;
+	.lbi-input {
 		min-width: 240px;
 		appearance: none;
 		position: relative;
 		display: block;
 		width: 100%;
-		padding-left: 0.75rem;
-		padding-right: 0.75rem; 
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem; 
-		border-width: 1px;
-		border-color: rgb(209 213 219);
-		color: rgb(17 24 39);	
-		margin-bottom: 1rem;
-		border-radius: 0.175rem;
-		border-radius: 0.175rem;
+		padding: 0.5rem 0.75rem; 
+		border: 1px solid #b3b3b3;
+		border-radius: 0.125rem;	
+		color: #1a1a1a;	
+		margin-bottom: 0.25rem;
 	}
 	:focus{
 		outline: none;
 		border-color: #005eb8;
 		z-index: 10;
-		border-width: 1px;
 		
 	}
 	::placeholder{
 		font-style: italic;
-		color: #a0aec0;
+		color: #808080;
 	}
 
-	.am-c-input--auto-min-width {
+	.lbi-input--auto-min-width {
 		min-width: auto;
 	}
 
-	.am-c-select {
+	.lbi-select {
 		background-image: linear-gradient(45deg, transparent 50%, black 50%),
 		linear-gradient(135deg, black 50%, transparent 50%);
 		background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), 100% 0;
@@ -77,7 +70,26 @@
 		background-repeat: no-repeat;
 	}
 	
-	.am-c-input--on-error {
+	.lbi-input--on-error {
 		border-color: #c60000;
+	}
+
+	.lbi-error-message {
+		color: #c60000;
+		font-size: 0.75rem;
+    	line-height: 1rem;
+		min-height: 20px;
+	}
+
+	.lbi-error-message-hidden {
+		visibility: hidden;
+	}
+
+	.lbi-select-wrapper {
+		position: relative;
+	}
+
+	.lbi-select-wrapper-padding {
+		padding-top: 0.5rem;
 	}
 </style>
