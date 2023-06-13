@@ -25,9 +25,9 @@
 		node.type = type;
 	}
 
-	function handleNumbers(){
-		inputValue = removeLeadingZero(inputValue)
-		if(min !== '' && +min > +inputValue) {
+	function handleNumbers() {
+		inputValue = removeLeadingZero(inputValue);
+		if (min !== '' && +min > +inputValue) {
 			inputValue = min.toString();
 		} else if (max !== '' && +max < +inputValue) {
 			inputValue = max.toString();
@@ -47,13 +47,10 @@
 			disabled={isDisabled}
 			readonly={isReadOnly}
 			class="appearance-none block w-full px-3 py-2 border border-amadeusgray300 placeholder-amadeusgray500 text-amadeusgray900 focus:outline-none focus:border-amadeusblue focus:z-10 sm:text-sm mb-1 focus:border rounded-sm min-w-fit mr-0
-        {inputError ? 'border-amadeusred' : ''} {isTypeNumber
-				? 'pr-0'
-				: ''} {classesForInput}"
+        {inputError ? 'border-amadeusred' : ''} {isTypeNumber ? 'pr-0' : ''} {classesForInput}"
 			bind:value={inputValue}
 			on:blur={(event) => {
-				dispatch('onInputBlur', event),
-					isTypeNumber ? (handleNumbers()) : null;
+				dispatch('onInputBlur', event), isTypeNumber ? handleNumbers() : null;
 			}}
 			on:input={(event) => dispatch('onInput', event)}
 			on:change={(event) => dispatch('onInputChanges', event)}

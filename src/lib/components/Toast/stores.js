@@ -94,58 +94,77 @@ function createToast() {
 		return count;
 	}
 
-  function success(m, testId = '') {
-	pop()
-	  push(`<div class="flex items-center">
+	function success(m, testId = '') {
+		pop();
+		push(
+			`<div class="flex items-center">
 				<svg viewBox="0 0 512 512" width="17" height="17" style="min-width: 17px; min-height: 17px;" fill="#008540"><path d="${CHECK_SVG}"/></svg>
-				<div style="padding-left: 0.5rem" ${testId !== '' ? 'data-cy-id=' + testId : '' }>`+ m +`</div></div>`, {
-      theme: {
-        '--toastBackground': '#f2f9f5',
-        '--toastBorder':'1px solid #00854066',
-        '--toastLeftBorderColor': '#008540'
-		  }
-    })
-  }
+				<div style="padding-left: 0.5rem" ${testId !== '' ? 'data-cy-id=' + testId : ''}>` +
+				m +
+				`</div></div>`,
+			{
+				theme: {
+					'--toastBackground': '#f2f9f5',
+					'--toastBorder': '1px solid #00854066',
+					'--toastLeftBorderColor': '#008540'
+				}
+			}
+		);
+	}
 
-  function info(m, testId = '') {
-    pop()
-    push(`<div class="flex items-center">
+	function info(m, testId = '') {
+		pop();
+		push(
+			`<div class="flex items-center">
           <svg viewBox="0 0 512 512" width="17" height="17" style="min-width: 17px; min-height: 17px;" fill="#1a7ead"><path d="${INFO_SVG}"/></svg>
-          <div style="padding-left: 0.5rem" ${testId !== '' ? 'data-cy-id=' + testId : '' }>` + m +`</div></div>`, {
-      theme: {
-        '--toastBackground': '#F4F9FB',
-        '--toastBorder':'1px solid #1a7ead66',
-        '--toastLeftBorderColor': '#1a7ead'
-      }
-    })
-  } 
-	
-function warning(m, testId = '') {
-  pop()
-	push(`<div class="flex items-center">
+          <div style="padding-left: 0.5rem" ${testId !== '' ? 'data-cy-id=' + testId : ''}>` +
+				m +
+				`</div></div>`,
+			{
+				theme: {
+					'--toastBackground': '#F4F9FB',
+					'--toastBorder': '1px solid #1a7ead66',
+					'--toastLeftBorderColor': '#1a7ead'
+				}
+			}
+		);
+	}
+
+	function warning(m, testId = '') {
+		pop();
+		push(
+			`<div class="flex items-center">
 				<svg viewBox="0 0 574 512" width="17" height="17" style="min-width: 17px; min-height: 17px;" fill="#f7a827"><path d="${TRIANGLE_SVG}"/></svg>
-				<div style="padding-left: 0.5rem" ${testId !== '' ? 'data-cy-id=' + testId : '' }>` + m +`</div></div>`, {
-		theme: {
-			'--toastBackground': '#fffbf4',
-			'--toastBorder':'1px solid #f7a82766',
-      '--toastLeftBorderColor': '#f7a827'
-		}
-	})
-}
-	
-function failure(m, testId = '') {
-  pop()
-	toast.push(`<div class="flex items-center">
+				<div style="padding-left: 0.5rem" ${testId !== '' ? 'data-cy-id=' + testId : ''}>` +
+				m +
+				`</div></div>`,
+			{
+				theme: {
+					'--toastBackground': '#fffbf4',
+					'--toastBorder': '1px solid #f7a82766',
+					'--toastLeftBorderColor': '#f7a827'
+				}
+			}
+		);
+	}
+
+	function failure(m, testId = '') {
+		pop();
+		toast.push(
+			`<div class="flex items-center">
 				<svg viewBox="0 0 512 512" width="17" height="17" style="min-width: 17px; min-height: 17px;" fill="#c60000"><path d="${MINUS_ERROR_SVG}"/></svg>
-				<div style="padding-left: 0.5rem" ${testId !== '' ? 'data-cy-id=' + testId : '' }>` + m +`</div></div>`, {
-		theme: {
-			'--toastBackground': '#fcf2f2',
-			'--toastBorder':'1px solid #c6000066',
-      '--toastLeftBorderColor': '#c60000'
-      
-		}
-	})
-}
+				<div style="padding-left: 0.5rem" ${testId !== '' ? 'data-cy-id=' + testId : ''}>` +
+				m +
+				`</div></div>`,
+			{
+				theme: {
+					'--toastBackground': '#fcf2f2',
+					'--toastBorder': '1px solid #c6000066',
+					'--toastLeftBorderColor': '#c60000'
+				}
+			}
+		);
+	}
 
 	/**
 	 * Remove toast(s)

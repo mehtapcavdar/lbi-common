@@ -155,7 +155,7 @@
 	.error-wrapper {
 		color: var(--amadeus-color-red);
 		font-size: 0.75rem;
-    	line-height: 1rem;
+		line-height: 1rem;
 		min-height: 20px;
 	}
 

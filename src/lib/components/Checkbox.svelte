@@ -23,9 +23,7 @@
 		bind:checked={inputValue}
 		on:change={(e) => dispatch('onInputChanges', e)}
 	/>
-	<label class="input-label {classesForLabel}" for={inputName}
-		>{labelName}</label
-	>
+	<label class="input-label {classesForLabel}" for={inputName}>{labelName}</label>
 </div>
 
 <style>
@@ -50,7 +48,7 @@
 		cursor: pointer;
 	}
 
-	input[type="checkbox"].input-checkbox:focus {
+	input[type='checkbox'].input-checkbox:focus {
 		outline: 0;
 		box-shadow: 0 0 0 0.25rem #005eb840;
 	}

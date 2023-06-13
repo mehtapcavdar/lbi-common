@@ -30,13 +30,13 @@
 
 	function handleKeyboardPress(e: KeyboardEvent): Function | null {
 		if (clickLogic) {
-			switch(e.key) {
-				case 'Enter': 
+			switch (e.key) {
+				case 'Enter':
 					return clickLogic(e);
 				default:
 					return null;
 			}
-		} 
+		}
 		return null;
 	}
 </script>
@@ -50,11 +50,11 @@
 	{width}
 	xmlns="http://www.w3.org/2000/svg"
 	class="{getIconDirection(direction)} {classes}"
-	fill={fill}
+	{fill}
 	data-cy-id={testId}
 	{viewBox}
 	tabindex={clickLogic ? tabIndex : null}
-	role={clickLogic ? 'button': null}
+	role={clickLogic ? 'button' : null}
 >
 	<path d={iconSVG} />
 </svg>

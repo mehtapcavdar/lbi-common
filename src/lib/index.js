@@ -8,10 +8,10 @@ export { default as Tooltip } from './components/Tooltip.svelte';
 export { default as RadioInput } from './components/RadioInput.svelte';
 export { default as Checkbox } from './components/Checkbox.svelte';
 export { default as PageTransition } from './components/PageTransition.svelte';
-export { default as SvelteToast } from './components/Toast/SvelteToast.svelte'
+export { default as SvelteToast } from './components/Toast/SvelteToast.svelte';
 export { toast } from './components/Toast/stores.js';
-export { 
-    DEFAULT_DEBOUNCE_TIME,
+export {
+	DEFAULT_DEBOUNCE_TIME,
 	INPUT_DELAY,
 	LOADING_ANIMATION_DELAY_AND_DURATION,
 	ARROW_SVG,
@@ -35,7 +35,8 @@ export {
 	SORT_UP_SVG,
 	SORT_DOWN_SVG,
 	CLOSE_SVG,
-	MINUS_ERROR_SVG } from './config/constants';
+	MINUS_ERROR_SVG
+} from './config/constants';
 export { ButtonType } from './enums/buttontype.enum';
 export { Direction } from './enums/direction.enum';
 export { InputTypes } from './enums/inputtypes.enum';

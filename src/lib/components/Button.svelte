@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Loading from './Loading.svelte';
 	import { ButtonType } from '$lib/enums/buttontype.enum';
 	import { Size } from '$lib/enums/size.enum';
 	import { TEST_IDS } from '$lib/enums/testconstants.enum';
@@ -10,6 +11,7 @@
 	export let type: ButtonType = ButtonType.Transparent;
 	export let buttonSize: Size = Size.XLarge;
 	export let testingId: string = `${TEST_IDS.ButtonId}-${label}`;
+	export let loading: boolean = false;
 
 	function getButtonSize(size: Size): string {
 		switch (size) {
@@ -25,19 +27,37 @@
 				return 'am-c-df_btn__xl';
 		}
 	}
+
+	function getSpinnerSize(size: Size): string {
+		switch (size) {
+			case Size.Unset:
+				return '';
+			case Size.Small:
+				return 'am-c-spinner__sm';
+			case Size.Large:
+				return 'am-c-spinner__lg';
+			case Size.XLarge:
+				return 'am-c-spinner__xl';
+			default:
+				return 'am-c-spinner__xl';
+		}
+	}
 </script>
 
 <button
 	data-cy-id={testingId}
 	on:click={(e) => clickLogic(e)}
 	class="
-    {type === ButtonType.Primary ? 'am-c-df_btn am-c-df_btn-primary' : ''}
-    {type === ButtonType.OutlinePrimary ? 'am-c-df_btn am-c-df_btn-outline-primary' : ''}
-
-    {getButtonSize(buttonSize)} {additionalClasses}"
+    	{type === ButtonType.Primary ? 'am-c-df_btn am-c-df_btn-primary' : ''}
+    	{type === ButtonType.OutlinePrimary ? 'am-c-df_btn am-c-df_btn-outline-primary' : ''}
+    	{getButtonSize(buttonSize)} {additionalClasses}"
 	disabled={isDisabled}
 >
-	{label}
+	{#if loading}
+		<Loading classes={getSpinnerSize(buttonSize)} removeAnimation={true} />
+	{:else}
+		{label}
+	{/if}
 </button>
 
 <style global>
@@ -167,6 +187,33 @@
 		height: calc(1.5em + 1.1875rem + 2px);
 		border-radius: 1.5rem;
 		min-width: 6.25em;
+	}
+
+	.am-c-spinner__sm {
+		width: auto;
+		height: auto;
+		max-width: 1rem;
+		max-height: 1rem;
+		position: relative;
+		margin: 0 auto;
+	}
+
+	.am-c-spinner__lg {
+		width: auto;
+		height: auto;
+		max-width: 1.5rem;
+		max-height: 1.5rem;
+		position: relative;
+		margin: 0 auto;
+	}
+
+	.am-c-spinner__xl {
+		width: auto;
+		height: auto;
+		max-width: 2rem;
+		max-height: 12rem;
+		position: relative;
+		margin: 0 auto;
 	}
 
 	.am-c-df_btn-primary {
