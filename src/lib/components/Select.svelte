@@ -2,13 +2,14 @@
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
-	export let classes = '';
-	export let labelName = '';
-	export let inputName = '';
-	export let inputError = '';
-	export let inputValue = '';
-	export let placeholder = '';
-	export let showAll = false;
+	export let classes: string = '';
+	export let labelName: string = '';
+	export let inputName: string = '';
+	export let inputError: string = '';
+	export let inputValue: string = '';
+	export let placeholder: string = '';
+	export let testId: string = '';
+	export let showAll: boolean = false;
 	export let options: Array<any> = [];
 </script>
 
@@ -16,6 +17,7 @@
 	<label for={inputName}>{labelName}</label>
 	<div class="lbi-select-wrapper {labelName ? 'lbi-select-wrapper-padding' : ''}">
 		<select
+			data-cy-id={testId}
 			name={inputName}
 			class="
                 lbi-input lbi-input--auto-min-width lbi-select
@@ -32,7 +34,7 @@
 				{/each}
 		</select>
 	</div>
-	<div class="lbi-error-message {!inputError ? 'lbi-error-message-hidden' : ''}">{inputError}.</div>
+	<div class="lbi-error-message {!inputError ? 'lbi-error-message-hidden' : ''}">{inputError}</div>
 </div>
 <style>
 	.lbi-input {
