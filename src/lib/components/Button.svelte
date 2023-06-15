@@ -211,7 +211,7 @@
 		width: auto;
 		height: auto;
 		max-width: 2rem;
-		max-height: 12rem;
+		max-height: 2rem;
 		position: relative;
 		margin: 0 auto;
 	}
