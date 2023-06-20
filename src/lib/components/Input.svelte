@@ -25,9 +25,9 @@
 		node.type = type;
 	}
 
-	function handleNumbers(){
-		inputValue = removeLeadingZero(inputValue)
-		if(min !== '' && +min > +inputValue) {
+	function handleNumbers() {
+		inputValue = removeLeadingZero(inputValue);
+		if (min !== '' && +min > +inputValue) {
 			inputValue = min.toString();
 		} else if (max !== '' && +max < +inputValue) {
 			inputValue = max.toString();
@@ -105,13 +105,14 @@
 		color: #1a1a1a;
 		margin-bottom: 0.25rem;
 		margin-right: 0;
-
-		@media (min-width: 640px) {
-			font-size: 0.875rem;
-        	line-height: 1.25rem;
-		}
-
 	}
+	
+	@media (min-width: 640px) {
+			.lbi-input--field {
+				font-size: 0.875rem;
+				line-height: 1.25rem;
+			}
+		}
 
 	.lbi-input--field:focus {
 		outline: 2px solid transparent;

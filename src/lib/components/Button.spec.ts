@@ -31,8 +31,8 @@ describe('Button Component', () => {
 	});
 
 	test('should test click event', async () => {
-        const clickFunc = vi.fn();
-		const { getByRole } = render(Button, { props: {...buttonProps, clickLogic: clickFunc} });
+		const clickFunc = vi.fn();
+		const { getByRole } = render(Button, { props: { ...buttonProps, clickLogic: clickFunc } });
 		const button = getByRole('button');
 
 		await fireEvent.click(button);

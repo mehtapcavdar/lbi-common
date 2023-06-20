@@ -25,17 +25,20 @@
             "
 			bind:value={inputValue}
 			on:change={() => dispatch('onSelectChanges')}
-			on:blur={(event) => {dispatch('onInputBlur', event)}}
+			on:blur={(event) => {
+				dispatch('onInputBlur', event);
+			}}
 		>
 			{#if placeholder}<option value="" disabled selected hidden>{placeholder}</option>{/if}
 			{#if showAll}<option value="">All</option>{/if}
-				{#each options as option}
-					<option value={option.id}>{option.value}</option>
-				{/each}
+			{#each options as option}
+				<option value={option.id}>{option.value}</option>
+			{/each}
 		</select>
 	</div>
 	<div class="lbi-error-message {!inputError ? 'lbi-error-message-hidden' : ''}">{inputError}</div>
 </div>
+
 <style>
 	.lbi-input {
 		min-width: 240px;
@@ -49,13 +52,13 @@
 		color: #1a1a1a;	
 		margin-bottom: 0.25rem;
 	}
-	:focus{
+	:focus {
 		outline: none;
 		border-color: #005eb8;
 		z-index: 10;
 		
 	}
-	::placeholder{
+	::placeholder {
 		font-style: italic;
 		color: #808080;
 	}
@@ -66,8 +69,9 @@
 
 	.lbi-select {
 		background-image: linear-gradient(45deg, transparent 50%, black 50%),
-		linear-gradient(135deg, black 50%, transparent 50%);
-		background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), 100% 0;
+			linear-gradient(135deg, black 50%, transparent 50%);
+		background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px),
+			100% 0;
 		background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
 		background-repeat: no-repeat;
 	}
