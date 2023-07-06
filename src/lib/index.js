@@ -35,7 +35,9 @@ export {
 	SORT_UP_SVG,
 	SORT_DOWN_SVG,
 	CLOSE_SVG,
-	MINUS_ERROR_SVG
+	MINUS_ERROR_SVG,
+	EYE_SVG,
+	MEATBALL_SVG
 } from './config/constants';
 export { ButtonType } from './enums/buttontype.enum';
 export { Direction } from './enums/direction.enum';

@@ -98,7 +98,7 @@
 		appearance: none;
 		display: block;
 		width: 100%;
-		min-width: fit-content;
+		min-width: auto;
 		padding: 0.5rem 0.75rem;
 		border: 1px solid #b3b3b3;
 		border-radius: 0.125rem;

@@ -74,6 +74,7 @@
 			100% 0;
 		background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
 		background-repeat: no-repeat;
+		background-color: #fff;
 	}
 	
 	.lbi-input--on-error {
