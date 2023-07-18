@@ -39,9 +39,11 @@
 			autocomplete="off"
 		/>
 	</div>
-	<div data-cy-id="errormessage" class="lbi-input--error-message">
-		{inputError}
-	</div>
+	{#if inputError}
+		<div data-cy-id="errormessage" class="lbi-input--error-message">
+			{inputError}
+		</div>
+	{/if}
 </div>
 
 <style>

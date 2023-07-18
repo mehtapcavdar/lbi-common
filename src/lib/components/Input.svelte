@@ -69,9 +69,11 @@
 			<div class="lbi-input--extra-sign">{extraSign}</div>
 		{/if}
 	</div>
-	<div data-cy-id="errormessage" class="lbi-input--error-message">
-		{inputError}
-	</div>
+	{#if inputError}
+		<div data-cy-id="errormessage" class="lbi-input--error-message">
+			{inputError}
+		</div>
+	{/if}
 </div>
 
 <style>
