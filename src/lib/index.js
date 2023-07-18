@@ -9,6 +9,7 @@ export { default as RadioInput } from './components/RadioInput.svelte';
 export { default as Checkbox } from './components/Checkbox.svelte';
 export { default as PageTransition } from './components/PageTransition.svelte';
 export { default as SvelteToast } from './components/Toast/SvelteToast.svelte';
+export { default as Textarea } from './components/Textarea.svelte';
 export { toast } from './components/Toast/stores.js';
 export {
 	DEFAULT_DEBOUNCE_TIME,
