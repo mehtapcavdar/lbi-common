@@ -41,12 +41,15 @@
 	testId={'nameInput'}
 />
 
-<Select
-	classes="w-full"
-	labelName={'mehtap'}
+<Input
+	labelName={'textarea'}
+	required={true}
+	textareaInput={true}
 	placeholder={'hallo'}
 	testId={'nameInput'}
 />
+
+<Select classes="w-full" labelName={'mehtap'} placeholder={'hallo'} testId={'nameInput'} />
 
 <Button
 	label={'mcEierpunsch'}

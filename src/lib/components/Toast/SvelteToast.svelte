@@ -38,7 +38,7 @@
 
 <style>
 	._toastContainer {
-		top: var(--toastContainerTop, 2rem);
+		top: var(--toastContainerTop, 1.5rem);
 		right: var(--toastContainerRight, 2rem);
 		bottom: var(--toastContainerBottom, auto);
 		left: var(--toastContainerLeft, auto);
