@@ -18,6 +18,7 @@
 	export let required: boolean = false;
 	export let isReadOnly: boolean = false;
 	export let isDisabled: boolean = false;
+	export let textareaInput: boolean = false;
 	export let testId: string = '';
 	const isTypeNumber: boolean = type === InputTypes.Number;
 
@@ -42,31 +43,50 @@
 		{/if}</label
 	>
 	<div class="lbi-input--wrapper-position {labelName ? 'lbi-input--wrapper-padding' : ''}">
-		<input
-			data-cy-id={testId}
-			disabled={isDisabled}
-			readonly={isReadOnly}
-			class="lbi-input--field
-        		{inputError ? 'lbi-input--field-error-border' : ''} 
-				{isTypeNumber ? 'lbi-input--field-number-padding' : ''} 
-				{classesForInput}"
-			bind:value={inputValue}
-			on:blur={(event) => {
-				dispatch('onInputBlur', event);
-				isTypeNumber ? (handleNumbers()) : null;
-			}}
-			on:input={(event) => dispatch('onInput', event)}
-			on:change={(event) => dispatch('onInputChanges', event)}
-			use:typeAction
-			{placeholder}
-			name={inputName}
-			id={inputName}
-			{min}
-			{max}
-			autocomplete="off"
-		/>
-		{#if extraSign}
-			<div class="lbi-input--extra-sign">{extraSign}</div>
+		{#if !textareaInput}
+			<input
+				data-cy-id={testId}
+				disabled={isDisabled}
+				readonly={isReadOnly}
+				class="lbi-input--field
+					{inputError ? 'lbi-input--field-error-border' : ''} 
+					{isTypeNumber ? 'lbi-input--field-number-padding' : ''} 
+					{classesForInput}"
+				bind:value={inputValue}
+				on:blur={(event) => {
+					dispatch('onInputBlur', event);
+					isTypeNumber ? (handleNumbers()) : null;
+				}}
+				on:input={(event) => dispatch('onInput', event)}
+				on:change={(event) => dispatch('onInputChanges', event)}
+				use:typeAction
+				{placeholder}
+				name={inputName}
+				id={inputName}
+				{min}
+				{max}
+				autocomplete="off"
+			/>
+			{#if extraSign}
+				<div class="lbi-input--extra-sign">{extraSign}</div>
+			{/if}
+		{:else}
+			<textarea
+				data-cy-id={testId}
+				disabled={isDisabled}
+				readonly={isReadOnly}
+				class="lbi-input--field
+					{inputError ? 'lbi-input--field-error-border' : ''} 
+					{classesForInput}"
+				bind:value={inputValue}
+				on:blur={(event) => dispatch('onInputBlur', event)}
+				on:input={(event) => dispatch('onInput', event)}
+				on:change={(event) => dispatch('onInputChanges', event)}
+				{placeholder}
+				name={inputName}
+				id={inputName}
+				autocomplete="off"
+			/>
 		{/if}
 	</div>
 	<div data-cy-id="errormessage" class="lbi-input--error-message">
