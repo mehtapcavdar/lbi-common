@@ -7,7 +7,8 @@
 	export let classesForInput = '';
 	export let classesForLabel = '';
 	export let inputValue: boolean;
-	export let required: boolean = false;
+	export let required = false;
+	export let isDisabled = false;
 	export let testId: string;
 
 	const dispatch = createEventDispatcher();
@@ -19,6 +20,7 @@
 		{required}
 		data-cy-id={testId}
 		type="checkbox"
+		disabled={isDisabled}
 		class="input-checkbox {classesForInput}"
 		bind:checked={inputValue}
 		on:change={(e) => dispatch('onInputChanges', e)}

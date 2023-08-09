@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import { Button, ButtonType, Icon, Input, Size, TRASH_SVG, toast } from '$lib';
+	import { Button, ButtonType, Checkbox, Icon, Input, Size, TRASH_SVG, toast } from '$lib';
 	import SvelteToast from '$lib/components/Toast/SvelteToast.svelte';
 
 	import Tooltip from '$lib/components/Tooltip.svelte';
@@ -57,4 +57,12 @@
 	additionalClasses="border-red-900"
 	buttonSize={Size.Small}
 	clickLogic={() => toast.success('mehtap')}
+/>
+
+<Checkbox
+	labelName={'test checkbox'}
+	inputName="testCheckBox"
+	inputValue={false}
+	isDisabled={true}
+	testId="testCheckbox"
 />
