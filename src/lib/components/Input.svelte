@@ -19,6 +19,7 @@
 	export let isReadOnly: boolean = false;
 	export let isDisabled: boolean = false;
 	export let textareaInput: boolean = false;
+	export let resizableTextarea = true;
 	export let testId: string = '';
 	const isTypeNumber: boolean = type === InputTypes.Number;
 
@@ -48,6 +49,7 @@
 				data-cy-id={testId}
 				disabled={isDisabled}
 				readonly={isReadOnly}
+				class:lbi-input-textarea-non-resizable={!resizableTextarea}
 				class="lbi-input--field
 					{inputError ? 'lbi-input--field-error-border' : ''} 
 					{isTypeNumber ? 'lbi-input--field-number-padding' : ''} 
@@ -127,6 +129,10 @@
 		margin-right: 0;
 	}
 	
+	.lbi-input-textarea-non-resizable {
+        resize: none;
+    }
+
 	@media (min-width: 640px) {
 			.lbi-input--field {
 				font-size: 0.875rem;

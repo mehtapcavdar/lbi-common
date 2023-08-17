@@ -6,6 +6,7 @@
 	import Tooltip from '$lib/components/Tooltip.svelte';
 	import { Direction } from '$lib/enums/direction.enum';
 	import Select from '$lib/components/Select.svelte';
+	import RadioInput from '$lib/components/RadioInput.svelte';
 
 	const PLUS_CIRCLE_SVG: string =
 		'M384 250v12c0 6.6-5.4 12-12 12h-98v98c0 6.6-5.4 12-12 12h-12c-6.6 0-12-5.4-12-12v-98h-98c-6.6 0-12-5.4-12-12v-12c0-6.6 5.4-12 12-12h98v-98c0-6.6 5.4-12 12-12h12c6.6 0 12 5.4 12 12v98h98c6.6 0 12 5.4 12 12zm120 6c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-32 0c0-119.9-97.3-216-216-216-119.9 0-216 97.3-216 216 0 119.9 97.3 216 216 216 119.9 0 216-97.3 216-216z';
@@ -65,4 +66,17 @@
 	inputValue={false}
 	isDisabled={true}
 	testId="testCheckbox"
+/>
+
+<RadioInput
+	labelText={'test Radio button'}
+	inputError='error'
+	inputName="limitedProductInstancesOption"
+	options={[
+		{ name: 'Yes', value: true },
+		{ name: 'No', value: false }
+	]}
+	selectedOption='false'
+	isRequired={true}
+	testId='testRadioButton'
 />
