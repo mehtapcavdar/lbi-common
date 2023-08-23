@@ -49,7 +49,6 @@
 				data-cy-id={testId}
 				disabled={isDisabled}
 				readonly={isReadOnly}
-				class:lbi-input-textarea-non-resizable={!resizableTextarea}
 				class="lbi-input--field
 					{inputError ? 'lbi-input--field-error-border' : ''} 
 					{isTypeNumber ? 'lbi-input--field-number-padding' : ''} 
@@ -77,6 +76,7 @@
 				data-cy-id={testId}
 				disabled={isDisabled}
 				readonly={isReadOnly}
+				class:lbi-input-textarea-non-resizable={!resizableTextarea}
 				class="lbi-input--field
 					{inputError ? 'lbi-input--field-error-border' : ''} 
 					{classesForInput}"
