@@ -13,10 +13,10 @@
 </script>
 
 <SvelteToast />
-<Tooltip content={'mehtap'} position="bottom" align="center" animation="slide">
+<Tooltip content={'hello'} position="bottom" align="center" animation="slide">
 	<Icon
 		classes={'cursor-pointer mt-0.5'}
-		clickLogic={() => alert('mehtap')}
+		clickLogic={() => alert('hello')}
 		iconSVG={PLUS_CIRCLE_SVG}
 		width={24}
 		height={24}
@@ -36,8 +36,17 @@
 
 <Input
 	classes="w-full"
-	labelName={'mehtap'}
+	labelName={'hello'}
 	required={true}
+	placeholder={'hallo'}
+	testId={'nameInput'}
+/>
+
+<Input
+	labelName={'textarea'}
+	required={true}
+	textareaInput={true}
+	resizableTextarea={false}
 	placeholder={'hallo'}
 	testId={'nameInput'}
 />
@@ -50,14 +59,14 @@
 	testId={'nameInput'}
 />
 
-<Select classes="w-full" labelName={'mehtap'} placeholder={'hallo'} testId={'nameInput'} />
+<Select classes="w-full" labelName={'hello'} placeholder={'hallo'} testId={'nameInput'} />
 
 <Button
 	label={'mcEierpunsch'}
 	type={ButtonType.Primary}
 	additionalClasses="border-red-900"
 	buttonSize={Size.Small}
-	clickLogic={() => toast.success('mehtap')}
+	clickLogic={() => toast.success('hello')}
 />
 
 <Checkbox
