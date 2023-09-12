@@ -26,8 +26,8 @@
 	{#each items as item (item.id)}
 		<li
 			class={item.classes?.join(' ')}
-			in:fly={item.intro}
-			out:fade
+			in:fly|global={item.intro}
+			out:fade|global
 			animate:flip={{ duration: 200 }}
 			style={getCss(item.theme)}
 		>
