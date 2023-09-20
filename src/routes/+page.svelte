@@ -7,85 +7,113 @@
 	import { Direction } from '$lib/enums/direction.enum';
 	import Select from '$lib/components/Select.svelte';
 	import RadioInput from '$lib/components/RadioInput.svelte';
+	import UserProfileMenu from '$lib/components/UserProfileMenu.svelte';
 
 	const PLUS_CIRCLE_SVG: string =
 		'M384 250v12c0 6.6-5.4 12-12 12h-98v98c0 6.6-5.4 12-12 12h-12c-6.6 0-12-5.4-12-12v-98h-98c-6.6 0-12-5.4-12-12v-12c0-6.6 5.4-12 12-12h98v-98c0-6.6 5.4-12 12-12h12c6.6 0 12 5.4 12 12v98h98c6.6 0 12 5.4 12 12zm120 6c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-32 0c0-119.9-97.3-216-216-216-119.9 0-216 97.3-216 216 0 119.9 97.3 216 216 216 119.9 0 216-97.3 216-216z';
 </script>
 
-<SvelteToast />
-<Tooltip content={'hello'} position="bottom" align="center" animation="slide">
+<div class="p-4">
+	<SvelteToast />
+	<Tooltip content={'hello'} position="bottom" align="center" animation="slide">
+		<Icon
+			classes={'cursor-pointer mt-0.5'}
+			clickLogic={() => alert('hello')}
+			iconSVG={PLUS_CIRCLE_SVG}
+			width={24}
+			height={24}
+			direction={Direction.Down}
+			testId="iconCreateLegalEntity"
+		/>
+	</Tooltip>
+	
 	<Icon
-		classes={'cursor-pointer mt-0.5'}
-		clickLogic={() => alert('hello')}
-		iconSVG={PLUS_CIRCLE_SVG}
-		width={24}
-		height={24}
-		direction={Direction.Down}
-		testId="iconCreateLegalEntity"
+		iconSVG={TRASH_SVG}
+		clickLogic={() => true}
+		classes={'cursor-pointer'}
+		width={17}
+		height={17}
+		direction={Direction.Up}
 	/>
-</Tooltip>
+	
+	
+	
+	<Input
+		classes="w-full"
+		labelName={'hello'}
+		required={true}
+		placeholder={'hallo'}
+		testId={'nameInput'}
+	/>
+	
+	<Input
+		labelName={'textarea'}
+		required={true}
+		textareaInput={true}
+		resizableTextarea={false}
+		placeholder={'hallo'}
+		testId={'nameInput'}
+	/>
+	
+	<Input
+		labelName={'textarea'}
+		required={true}
+		textareaInput={true}
+		placeholder={'hallo'}
+		testId={'nameInput'}
+	/>
+	
+	<Select classes="w-full" labelName={'hello'} placeholder={'hallo'} testId={'nameInput'} />
+	
+	<Button
+		label={'mcEierpunsch'}
+		type={ButtonType.Primary}
+		additionalClasses="border-red-900"
+		buttonSize={Size.Small}
+		clickLogic={() => toast.success('hello')}
+	/>
+	
+	<Checkbox
+		labelName={'test checkbox'}
+		inputName="testCheckBox"
+		inputValue={false}
+		isDisabled={true}
+		testId="testCheckbox"
+	/>
+	
+	<RadioInput
+		labelText={'test Radio button'}
+		inputError='error'
+		inputName="limitedProductInstancesOption"
+		options={[
+			{ name: 'Yes', value: true },
+			{ name: 'No', value: false }
+		]}
+		selectedOption='false'
+		isRequired={true}
+		testId='testRadioButton'
+	/>
 
-<Icon
-	iconSVG={TRASH_SVG}
-	clickLogic={() => true}
-	classes={'cursor-pointer'}
-	width={17}
-	height={17}
-	direction={Direction.Down}
-/>
+	<UserProfileMenu
+		labelDropdown = {'example.sample@muster.org'}
+		logout = {() => alert('logout')}
+		options ={
+			[
+				{
+				"link": "/#",
+				"text": "Lorem Ipsum",
+				},
+				{
+				"link": "/#",
+				"text": "Lorem Ipsum",
+				},
+				{
+				"link": "/#",
+				"text": "Lorem Ipsum",
+				}
+			]
+		}
+		labelDivider = 'Sign Out'
+	/>
 
-<Input
-	classes="w-full"
-	labelName={'hello'}
-	required={true}
-	placeholder={'hallo'}
-	testId={'nameInput'}
-/>
-
-<Input
-	labelName={'textarea'}
-	required={true}
-	textareaInput={true}
-	resizableTextarea={false}
-	placeholder={'hallo'}
-	testId={'nameInput'}
-/>
-
-<Input
-	labelName={'textarea'}
-	required={true}
-	textareaInput={true}
-	placeholder={'hallo'}
-	testId={'nameInput'}
-/>
-
-<Select classes="w-full" labelName={'hello'} placeholder={'hallo'} testId={'nameInput'} />
-
-<Button
-	label={'mcEierpunsch'}
-	type={ButtonType.Primary}
-	additionalClasses="border-red-900"
-	buttonSize={Size.Small}
-	clickLogic={() => toast.success('hello')}
-/>
-
-<Checkbox
-	labelName={'test checkbox'}
-	inputName="testCheckBox"
-	inputValue={false}
-	isDisabled={true}
-	testId="testCheckbox"
-/>
-
-<RadioInput
-	labelText={'test Radio button'}
-	inputError='error'
-	inputName="limitedProductInstancesOption"
-	options={[
-		{ name: 'Yes', value: true },
-		{ name: 'No', value: false }
-	]}
-	selectedOption='false'
-	isRequired={true}
-	testId='testRadioButton'
-/>
+</div>
