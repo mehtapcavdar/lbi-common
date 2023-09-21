@@ -15,16 +15,16 @@
 	function getIconDirection(direction: Direction): string {
 		switch (direction) {
 			case Direction.Left:
-				return 'rotate-90';
-			case Direction.Right:
 				return '-rotate-90';
+			case Direction.Right:
+				return 'rotate-90';
 			case Direction.Up:
-				return 'rotate-180';
-			case Direction.Down:
 				return 'rotate-0';
+			case Direction.Down:
+				return 'rotate-180';
 
 			default:
-				return 'rotate-90';
+				return 'rotate-0';
 		}
 	}
 
@@ -58,3 +58,18 @@
 >
 	<path d={iconSVG} />
 </svg>
+
+<style>
+	.rotate-0{
+		transform: rotate(0deg);
+	}
+	.rotate-90{
+		transform: rotate(90deg);
+	}
+	.-rotate-90{
+		transform: rotate(-90deg);
+	}
+	.rotate-180{
+		transform: rotate(180deg);
+	}
+</style>
