@@ -95,25 +95,25 @@
 	/>
 
 	<UserProfileMenu
-		labelDropdown = {'example.sample@muster.org'}
-		logout = {() => alert('logout')}
+		dropdownLabel = {'example.sample@muster.org'}
+		func = {() => alert('logout')}
 		options ={
 			[
 				{
 				"link": "/#",
-				"text": "Lorem Ipsum",
+				"label": "Lorem Ipsum",
 				},
 				{
 				"link": "/#",
-				"text": "Lorem Ipsum",
+				"label": "Lorem Ipsum",
 				},
 				{
 				"link": "/#",
-				"text": "Lorem Ipsum",
+				"label": "Lorem Ipsum",
 				}
 			]
 		}
-		labelDivider = 'Sign Out'
+		funcLabel = 'Sign Out'
 	/>
 
 </div>

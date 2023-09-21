@@ -8,6 +8,7 @@ export { default as Tooltip } from './components/Tooltip.svelte';
 export { default as RadioInput } from './components/RadioInput.svelte';
 export { default as Checkbox } from './components/Checkbox.svelte';
 export { default as PageTransition } from './components/PageTransition.svelte';
+export { default as UserProfileMenu } from './components/UserProfileMenu.svelte';
 export { default as SvelteToast } from './components/Toast/SvelteToast.svelte';
 export { toast } from './components/Toast/stores.js';
 export {
@@ -36,8 +37,8 @@ export {
 	SORT_DOWN_SVG,
 	CLOSE_SVG,
 	MINUS_ERROR_SVG,
-	EYE_SVG,
-	MEATBALL_SVG
+	MEATBALL_SVG,
+	EYE_SVG
 } from './config/constants';
 export { ButtonType } from './enums/buttontype.enum';
 export { Direction } from './enums/direction.enum';

@@ -5,10 +5,10 @@
 	export let testId = '';
 	export let classes = '';
 	export let classesForDropdownButton = '';
-	export let labelDropdown: string;
-	export let options: any;
-	export let labelDivider: string;
-    export let logout: any;
+	export let dropdownLabel: string;
+	export let options: { link: string; label: string }[];
+	export let funcLabel: string;
+	export let func: any;
 
 	let isDropdownOpen: boolean = false;
 
@@ -16,14 +16,20 @@
 		isDropdownOpen = !isDropdownOpen;
 	}
 
+	document.onclick = function (e) {
+		let dropdown_menu = document.querySelector('.dropdown-button');
+		if (!dropdown_menu?.contains(e.target)) {
+			isDropdownOpen = false;
+		}
+	};
 </script>
 
 <div class="dropdown-wrapper {classes}">
-	<button data-cy-id={testId} class="dropdown-button {classesForDropdownButton}"
-             on:click={() => toggleDropdown()}
-			on:blur={() => { isDropdownOpen = false;
-			}}
-    >
+	<button
+		data-cy-id={testId}
+		class="dropdown-button {classesForDropdownButton}"
+		on:click={() => toggleDropdown()}
+	>
 		<Icon
 			iconSVG={USER_SVG}
 			classes={'cursor-pointer mx-2'}
@@ -32,7 +38,7 @@
 			height={17}
 			direction={Direction.Up}
 		/>
-		{labelDropdown}
+		{dropdownLabel}
 		<Icon
 			iconSVG={CHEVRON_SVG}
 			classes={'cursor-pointer mx-2'}
@@ -43,34 +49,40 @@
 		/>
 	</button>
 
-	
-		{#if isDropdownOpen}
-			<div class="dropdown">
-				{#each options as option}
-					<a href={option.link} class="dropdown-list">{option.text} </a>
-				{/each}
-				<hr class="divider" />
-				<a class="dropdown-list-divider" role="button" tabindex="0" on:click={() => logout()}>
-						<Icon
-							iconSVG={USER_LOGOUT_SVG}
-							classes={'cursor-pointer'}
-							tabIndex={0}
-                            fill='#808080'
-							width={28}
-							height={17}
-							direction={Direction.Up}
-						/>
-					{labelDivider}
-				</a>
+	{#if isDropdownOpen}
+		<div class="dropdown">
+			{#each options as option}
+				<a href={option.link} class="dropdown-list">{option.label} </a>
+			{/each}
+			<hr class="divider" />
+			<div
+				class="dropdown-list-divider"
+				role="button"
+				tabindex="0"
+				on:keydown={(e) => {
+					if (e.key === 'Enter') func();
+				}}
+				on:click={() => func()}
+			>
+				<Icon
+					iconSVG={USER_LOGOUT_SVG}
+					classes={'cursor-pointer'}
+					tabIndex={0}
+					fill="#808080"
+					width={28}
+					height={17}
+					direction={Direction.Up}
+				/>
+				{funcLabel}
 			</div>
-		{/if}
-	
+		</div>
+	{/if}
 </div>
 
 <style>
-    .divider {
-        border-color: #ccc;
-    }
+	.divider {
+		border-color: #ccc;
+	}
 	.dropdown-list-divider {
 		display: flex;
 		flex-direction: row;
@@ -89,7 +101,7 @@
 		padding: 0.5rem 1rem;
 	}
 	.dropdown-wrapper {
-        width: fit-content;
+		width: fit-content;
 		font-weight: 100;
 		user-select: none;
 		position: relative;
@@ -102,10 +114,10 @@
 		align-items: center;
 		border-radius: 0.25rem;
 		border-width: 2px;
-        padding: 0.5rem;
+		padding: 0.5rem;
 	}
 	.dropdown-button:focus {
-        border-style: unset ;
+		border-style: unset;
 		border-color: var(--df-lightblue);
 		--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width)
 			var(--tw-ring-offset-color);
@@ -122,10 +134,8 @@
 		border-radius: 0.25rem;
 		border-color: rgb(209 213 219);
 		background-color: white;
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem; 
 		position: absolute;
-        margin-top: 4px;
+		margin-top: 2px;
 		right: 0px;
 		z-index: 10;
 		text-align: start;
