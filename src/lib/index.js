@@ -44,3 +44,4 @@ export { ButtonType } from './enums/buttontype.enum';
 export { Direction } from './enums/direction.enum';
 export { InputTypes } from './enums/inputtypes.enum';
 export { Size } from './enums/size.enum';
+export { clickOutside } from './utils/clickOutside';

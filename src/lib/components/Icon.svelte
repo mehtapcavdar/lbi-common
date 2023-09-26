@@ -6,7 +6,7 @@
 	export let height: number = 22;
 	export let width: number = 22;
 	export let fill: string = '#005eb8';
-	export let direction: Direction = Direction.Left;
+	export let direction: Direction = Direction.Up;
 	export let clickLogic: Function | null = null;
 	export let classes: string = '';
 	export let testId: string = '';
@@ -60,16 +60,16 @@
 </svg>
 
 <style>
-	.rotate-0{
+	.rotate-0 {
 		transform: rotate(0deg);
 	}
-	.rotate-90{
+	.rotate-90 {
 		transform: rotate(90deg);
 	}
-	.-rotate-90{
+	.-rotate-90 {
 		transform: rotate(-90deg);
 	}
-	.rotate-180{
+	.rotate-180 {
 		transform: rotate(180deg);
 	}
 </style>

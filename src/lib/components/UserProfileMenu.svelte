@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { CHEVRON_SVG, Direction, Icon } from '$lib';
 	import { USER_SVG, USER_LOGOUT_SVG } from '$lib/config/constants';
+	import { clickOutside } from '$lib/utils/clickOutside';
 
 	export let testId = '';
 	export let classes = '';
@@ -15,39 +16,33 @@
 	function toggleDropdown() {
 		isDropdownOpen = !isDropdownOpen;
 	}
-
-	document.onclick = function (e) {
-		let dropdown_menu = document.querySelector('.dropdown-button');
-		if (!dropdown_menu?.contains(e.target)) {
-			isDropdownOpen = false;
-		}
-	};
 </script>
 
-<div class="dropdown-wrapper {classes}">
-	<button
+<div
+	class="dropdown-wrapper {classes}"
+	use:clickOutside
+	on:click_outside={() => (isDropdownOpen = false)}
+>
+	<div
 		data-cy-id={testId}
 		class="dropdown-button {classesForDropdownButton}"
+		role="button"
+		tabindex="0"
 		on:click={() => toggleDropdown()}
+		on:keypress={(e) => {
+			if (e.key === 'Enter') toggleDropdown();
+		}}
 	>
-		<Icon
-			iconSVG={USER_SVG}
-			classes={'cursor-pointer mx-2'}
-			tabIndex={0}
-			width={17}
-			height={17}
-			direction={Direction.Up}
-		/>
+		<Icon iconSVG={USER_SVG} classes={'cursor-pointer mx-2'} width={17} height={17} />
 		{dropdownLabel}
 		<Icon
 			iconSVG={CHEVRON_SVG}
 			classes={'cursor-pointer mx-2'}
-			tabIndex={0}
 			width={15}
 			height={15}
 			direction={isDropdownOpen ? Direction.Up : Direction.Down}
 		/>
-	</button>
+	</div>
 
 	{#if isDropdownOpen}
 		<div class="dropdown">
@@ -59,10 +54,16 @@
 				class="dropdown-list-divider"
 				role="button"
 				tabindex="0"
-				on:keydown={(e) => {
-					if (e.key === 'Enter') func();
+				on:keypress={(e) => {
+					if (e.key === 'Enter') {
+						isDropdownOpen = false;
+						func();
+					}
 				}}
-				on:click={() => func()}
+				on:click={() => {
+					isDropdownOpen = false;
+					func();
+				}}
 			>
 				<Icon
 					iconSVG={USER_LOGOUT_SVG}
@@ -71,7 +72,6 @@
 					fill="#808080"
 					width={28}
 					height={17}
-					direction={Direction.Up}
 				/>
 				{funcLabel}
 			</div>
@@ -117,8 +117,7 @@
 		padding: 0.5rem;
 	}
 	.dropdown-button:focus {
-		border-style: unset;
-		border-color: var(--df-lightblue);
+		border-color: lightgray;
 		--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width)
 			var(--tw-ring-offset-color);
 		--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width))
@@ -130,7 +129,7 @@
 		display: flex;
 		flex-direction: column;
 		border-width: 2px;
-		width: 105%;
+		width: 100%;
 		border-radius: 0.25rem;
 		border-color: rgb(209 213 219);
 		background-color: white;
