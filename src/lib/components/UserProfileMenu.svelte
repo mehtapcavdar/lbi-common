@@ -47,7 +47,19 @@
 	{#if isDropdownOpen}
 		<div class="dropdown">
 			{#each options as option}
-				<a href={option.link} class="dropdown-list">{option.label} </a>
+				<a
+					href={option.link}
+					class="dropdown-list"
+					on:keypress={(e) => {
+						if (e.key === 'Enter') {
+							isDropdownOpen = false;
+						}
+					}}
+					on:click={() => {
+						isDropdownOpen = false;
+					}}
+					>{option.label}
+				</a>
 			{/each}
 			<hr class="divider" />
 			<div
