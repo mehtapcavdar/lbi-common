@@ -95,6 +95,7 @@
 	/>
 
 	<UserProfileMenu
+		classesForDropdownButton={'gap-2'}
 		dropdownLabel = {'example.sample@muster.org'}
 		func = {() => alert('logout')}
 		options ={
