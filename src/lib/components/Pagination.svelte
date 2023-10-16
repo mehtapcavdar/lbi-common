@@ -30,7 +30,7 @@
 			class:disabled={currentPage === 1}
 			aria-disabled={currentPage === 1}
             tabindex="0"
-			on:click|preventDefault={() => {
+			on:click={() => {
 				if (currentPage !== 1) setCurrentPage(1);
 			}}>first</a
 		>
@@ -42,7 +42,7 @@
 			class:disabled={currentPage === 1}
 			aria-disabled={currentPage === 1}
             tabindex="0"
-			on:click|preventDefault={() => {
+			on:click={() => {
 				if (currentPage !== 1) setCurrentPage(currentPage - 1);
 			}}>previous</a
 		>
@@ -54,7 +54,7 @@
 					href={null}
                     tabindex="0"
 					class="pagination-link"
-					on:click|preventDefault={() => setCurrentPage(currentPage - i)}>{currentPage - i}</a
+					on:click={() => setCurrentPage(currentPage - i)}>{currentPage - i}</a
 				>
 			</li>
 		{/if}
@@ -67,7 +67,7 @@
 					href={null}
                     tabindex="0"
 					class="pagination-link"
-					on:click|preventDefault={() => setCurrentPage(currentPage + (i + 1))}
+					on:click={() => setCurrentPage(currentPage + (i + 1))}
 					>{currentPage + (i + 1)}</a
 				>
 			</li>
@@ -80,7 +80,7 @@
 			class:disabled={currentPage === totalPages}
 			aria-disabled={currentPage === totalPages}
             tabindex="0"
-			on:click|preventDefault={() => {
+			on:click={() => {
 				if (currentPage !== totalPages) setCurrentPage(currentPage + 1);
 			}}>next</a
 		>
@@ -92,7 +92,7 @@
 			class:disabled={currentPage === totalPages}
 			aria-disabled={currentPage === totalPages}
             tabindex="0"
-			on:click|preventDefault={() => {
+			on:click={() => {
 				if (currentPage !== totalPages) setCurrentPage(totalPages);
 			}}>last</a
 		>
@@ -129,6 +129,7 @@
 		font-size: var(--df-pagination-font-size, 1rem);
 		color: var(--df-pagination-color, #000);
 		background-color: var(--df-pagination-bg, #fff);
+        border-radius: var(--df-pagination-border-radius, 0.125rem);
 
 		border: none;
 
