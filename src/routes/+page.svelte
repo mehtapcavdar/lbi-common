@@ -8,7 +8,6 @@
 	import Select from '$lib/components/Select.svelte';
 	import RadioInput from '$lib/components/RadioInput.svelte';
 	import UserProfileMenu from '$lib/components/UserProfileMenu.svelte';
-	import AccordionItem from '$lib/components/AccordionItem.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
 
 	const PLUS_CIRCLE_SVG: string =
@@ -113,13 +112,6 @@
 		]}
 		funcLabel="Sign Out"
 	/>
-
-	{#each { length: 3 } as _, i}
-		<AccordionItem>
-			<div slot="button">Click me! {i}</div>
-			<div slot="body">You've clicked on the button! {i}</div>
-		</AccordionItem>
-	{/each}
 
 	<Pagination
 		allContent={[
