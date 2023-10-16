@@ -1,3 +1,4 @@
+export { default as AccordionItem } from './components/AccordionItem.svelte';
 export { default as Button } from './components/Button.svelte';
 export { default as Icon } from './components/Icon.svelte';
 export { default as Select } from './components/Select.svelte';
