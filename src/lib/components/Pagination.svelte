@@ -1,4 +1,8 @@
 <script lang="ts">
+	import { CHEVRON_SVG, DOUBLE_CHEVRON_SVG } from "$lib/config/constants";
+	import { Direction } from "$lib/enums/direction.enum";
+	import Icon from "./Icon.svelte";
+
 	export let allContent = [];
 	export let currentPage = 1; // Update this to simulate page change.
 	export let postsPerPage = 2;
@@ -26,25 +30,41 @@
 	<li>
 		<a
 			href={null}
-			class="pagination-link"
+			class="pagination-icon"
 			class:disabled={currentPage === 1}
 			aria-disabled={currentPage === 1}
             tabindex="0"
 			on:click={() => {
 				if (currentPage !== 1) setCurrentPage(1);
-			}}>first</a
+			}}>
+                <Icon 
+                    iconSVG={DOUBLE_CHEVRON_SVG} 
+                    direction={Direction.Left}
+                    width={17}
+                    height={17}
+                    fill={currentPage === 1 ? '#b3b3b3' : '#000'}
+                />
+            </a
 		>
 	</li>
 	<li>
 		<a
 			href={null}
-			class="pagination-link"
+			class="pagination-icon"
 			class:disabled={currentPage === 1}
 			aria-disabled={currentPage === 1}
             tabindex="0"
 			on:click={() => {
 				if (currentPage !== 1) setCurrentPage(currentPage - 1);
-			}}>previous</a
+			}}>
+                <Icon 
+                    iconSVG={CHEVRON_SVG} 
+                    direction={Direction.Left}
+                    width={17}
+                    height={17}
+                    fill={currentPage === 1 ? '#b3b3b3' : '#000'}
+                    />
+            </a
 		>
 	</li>
 	{#each [2, 1] as i}
@@ -76,25 +96,41 @@
 	<li>
 		<a
 			href={null}
-			class="pagination-link"
+			class="pagination-icon"
 			class:disabled={currentPage === totalPages}
 			aria-disabled={currentPage === totalPages}
             tabindex="0"
 			on:click={() => {
 				if (currentPage !== totalPages) setCurrentPage(currentPage + 1);
-			}}>next</a
+			}}>
+                <Icon 
+                    iconSVG={CHEVRON_SVG} 
+                    direction={Direction.Right}
+                    width={17}
+                    height={17}
+                    fill={currentPage === totalPages ? '#b3b3b3' : '#000'}
+                />
+            </a
 		>
 	</li>
 	<li>
 		<a
 			href={null}
-			class="pagination-link"
+			class="pagination-icon"
 			class:disabled={currentPage === totalPages}
 			aria-disabled={currentPage === totalPages}
             tabindex="0"
 			on:click={() => {
 				if (currentPage !== totalPages) setCurrentPage(totalPages);
-			}}>last</a
+			}}>
+                <Icon 
+                    iconSVG={DOUBLE_CHEVRON_SVG} 
+                    direction={Direction.Right}
+                    width={17}
+                    height={17}
+                    fill={currentPage === totalPages ? '#b3b3b3' : '#000'}
+                />
+            </a
 		>
 	</li>
 </ul>
@@ -109,7 +145,8 @@
 		cursor: not-allowed;
 	}
 
-	.pagination-link {
+	.pagination-link,
+    .pagination-icon {
 		position: relative;
 		display: block;
 
@@ -156,5 +193,13 @@
 			background-color: var(--df-pagination-disabled-bg, #fff);
 			border-color: var(--df-pagination-disabled-border-color, #b3b3b3);
 		}
+
 	}
+
+    .pagination-icon {
+        display: flex;
+        align-items: center;
+        margin-top: -1px;
+        border-radius: 50%;
+    }
 </style>
