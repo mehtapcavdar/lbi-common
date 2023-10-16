@@ -4,6 +4,7 @@ export { default as Select } from './components/Select.svelte';
 export { default as InfiniteScroll } from './components/InfiniteScroll.svelte';
 export { default as Input } from './components/Input.svelte';
 export { default as Loading } from './components/Loading.svelte';
+export { default as Pagination } from './components/Pagination.svelte'
 export { default as Tooltip } from './components/Tooltip.svelte';
 export { default as RadioInput } from './components/RadioInput.svelte';
 export { default as Checkbox } from './components/Checkbox.svelte';
