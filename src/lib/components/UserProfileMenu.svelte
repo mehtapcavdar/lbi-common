@@ -33,11 +33,11 @@
 			if (e.key === 'Enter') toggleDropdown();
 		}}
 	>
-		<Icon iconSVG={USER_SVG} classes={'cursor-pointer mx-2'} width={17} height={17} />
+		<Icon iconSVG={USER_SVG} classes={'cursor-pointer'} width={17} height={17} />
 		{dropdownLabel}
 		<Icon
 			iconSVG={CHEVRON_SVG}
-			classes={'cursor-pointer mx-2'}
+			classes={'cursor-pointer'}
 			width={15}
 			height={15}
 			direction={isDropdownOpen ? Direction.Up : Direction.Down}
@@ -47,7 +47,19 @@
 	{#if isDropdownOpen}
 		<div class="dropdown">
 			{#each options as option}
-				<a href={option.link} class="dropdown-list">{option.label} </a>
+				<a
+					href={option.link}
+					class="dropdown-list"
+					on:keypress={(e) => {
+						if (e.key === 'Enter') {
+							isDropdownOpen = false;
+						}
+					}}
+					on:click={() => {
+						isDropdownOpen = false;
+					}}
+					>{option.label}
+				</a>
 			{/each}
 			<hr class="divider" />
 			<div
@@ -68,7 +80,6 @@
 				<Icon
 					iconSVG={USER_LOGOUT_SVG}
 					classes={'cursor-pointer'}
-					tabIndex={0}
 					fill="#808080"
 					width={28}
 					height={17}
