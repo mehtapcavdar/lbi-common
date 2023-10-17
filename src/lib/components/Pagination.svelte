@@ -3,28 +3,16 @@
 	import { Direction } from "$lib/enums/direction.enum";
 	import Icon from "./Icon.svelte";
 
-	export let allContent = [];
+	export let allContent: any = [];
 	export let currentPage = 1; // Update this to simulate page change.
-	export let postsPerPage = 2;
-	export let totalPosts = allContent.length;
-	export let totalPages = Math.ceil(totalPosts / postsPerPage);
-
-    let isFocused = false;
-
-	$: postRangeHigh = currentPage * postsPerPage;
-	$: postRangeLow = postRangeHigh - postsPerPage;
+	export let itemsPerPage = 2;
+	export let totalItems = allContent.length;
+	export let totalPages = Math.ceil(totalItems / itemsPerPage);
 
 	export function setCurrentPage(newPage: number) {
 		currentPage = newPage;
 	}
 </script>
-
-<!-- Remove after done with implementation. For testing only  -->
-{#each allContent as post, i}
-	{#if i >= postRangeLow && i < postRangeHigh}
-		<h3>{post}</h3>
-	{/if}
-{/each}
 
 <ul class="pagination">
 	<li>
