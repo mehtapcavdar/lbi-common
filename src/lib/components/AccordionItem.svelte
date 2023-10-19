@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
+	import Icon from './Icon.svelte';
+	import { CHEVRON_SVG } from '$lib/config/constants';
+	import { Direction } from '$lib/enums/direction.enum';
 
 	export let open = false;
 	export let disabled = false;
@@ -27,9 +30,11 @@
 	}}
 >
 	{#if (showBody && $$slots.body)}
-		<svg xmlns="http://www.w3.org/2000/svg" height="17" width="17" class="chevron" transform={open ? "rotate(180)" : "rotate(0)"} viewBox="0 0 448 512"><path xmlns="http://www.w3.org/2000/svg" fill="#005eb8" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z"/></svg>
+		<div class="chevron">
+			<Icon height={17} width={17} iconSVG={CHEVRON_SVG} direction={open ? Direction.Down : Direction.Up}/>
+		</div>
 	{/if}
-	<slot name="button" />
+	<slot style="padding-left: 1rem;" name="button" />
 </button>
 
 {#if open && $$slots.body && showBody}
@@ -81,10 +86,10 @@
 	}
 
 	.chevron {
-		margin-top: var(--accordion-chevron-mt, 0rem);
-		margin-right: var(--accordion-chevron-mr, 0.75rem);
-		margin-bottom: var(--accordion-chevron-mb, 0rem);
-		margin-left: var(--accordion-chevron-ml, 0rem);
+		padding-top: var(--accordion-chevron-pt, 0rem);
+		padding-right: var(--accordion-chevron-pr, 0.75rem);
+		padding-bottom: var(--accordion-chevron-pb, 0rem);
+		padding-left: var(--accordion-chevron-pl, 0rem);
 	}
 
 	.accordion-body {
