@@ -16,8 +16,6 @@
 </script>
 
 <button
-	class:rotate={open}
-	class:no-before={!showBody || !$$slots.body}
 	class="accordion-button {buttonClasses}"
 	{disabled}
 	data-cy-id={buttonTestId}
@@ -28,6 +26,9 @@
 		}
 	}}
 >
+	{#if (showBody && $$slots.body)}
+		<svg xmlns="http://www.w3.org/2000/svg" height="17" width="17" class="chevron" transform={open ? "rotate(180)" : "rotate(0)"} viewBox="0 0 448 512"><path xmlns="http://www.w3.org/2000/svg" fill="#005eb8" d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z"/></svg>
+	{/if}
 	<slot name="button" />
 </button>
 
@@ -57,7 +58,7 @@
 		padding-top: var(--accordion-button-pt, 0.75rem);
 		padding-right: var(--accordion-button-pr, 1rem);
 		padding-bottom: var(--accordion-button-pb, 0.75rem);
-		padding-left: var(--accordion-button-pl, 2rem);
+		padding-left: var(--accordion-button-pl, 1rem);
 
 		border-top: var(--accordion-button-border-t, 1px);
 		border-left: var(--accordion-button-border-l, 1px);
@@ -66,29 +67,6 @@
 
 		border-style: var(--accordion-button-border-style, solid);
 		border-color: var(--accordion-button-border-color, #ccc);
-
-		&.no-before {
-			padding-top: var(--accordion-button-no-arrow-pt, 0.75rem);
-			padding-right: var(--accordion-button-no-arrow-pr, 1rem);
-			padding-bottom: var(--accordion-button-no-arrow-pb, 0.75rem);
-			padding-left: var(--accordion-button-no-arrow-pl, 1rem);
-		}
-
-		&.no-before::before {
-			content: none;
-		}
-
-		&::before {
-			content: var(--accordion-button-chevron-url, url('$lib/assets/chevron-up.svg'));
-			position: var(--accordion-button-chevron-position, absolute);
-			margin-left: var(--accordion-button-chevron-ml, -1.5rem);
-			transform: var(--accordion-button-transform, rotate(180deg));
-			transition: var(--accordion-button-chevron-transition, transform 0.2s ease-in-out);
-		}
-
-		&.rotate::before {
-			transform: var(--accordion-button-transform-rotate, rotate(0deg));
-		}
 
 		&:hover {
 			background-color: var(--accordion-button-hover-bg-color, #f4f9fb);
@@ -100,6 +78,13 @@
 			opacity: var(--accordion-button-disabled-opacity, 1);
 			cursor: var(--accordion-button-disabled-cursor, not-allowed);
 		}
+	}
+
+	.chevron {
+		margin-top: var(--accordion-chevron-mt, 0rem);
+		margin-right: var(--accordion-chevron-mr, 0.75rem);
+		margin-bottom: var(--accordion-chevron-mb, 0rem);
+		margin-left: var(--accordion-chevron-ml, 0rem);
 	}
 
 	.accordion-body {
