@@ -34,7 +34,7 @@
 			<Icon height={17} width={17} iconSVG={CHEVRON_SVG} direction={open ? Direction.Down : Direction.Up}/>
 		</div>
 	{/if}
-	<slot style="padding-left: 1rem;" name="button" />
+	<slot name="button" />
 </button>
 
 {#if open && $$slots.body && showBody}
