@@ -8,8 +8,8 @@
 	export let label: string = '';
 	export let isDisabled: boolean = false;
 	export let additionalClasses: string = '';
-	export let type: ButtonType = ButtonType.Transparent;
-	export let buttonSize: Size = Size.XLarge;
+	export let type: ButtonType = ButtonType.Primary;
+	export let buttonSize: Size = Size.Unset;
 	export let testingId: string = `${TEST_IDS.ButtonId}-${label}`;
 	export let loading: boolean = false;
 
@@ -24,7 +24,7 @@
 			case Size.XLarge:
 				return 'am-c-df_btn__xl';
 			default:
-				return 'am-c-df_btn__xl';
+				return '';
 		}
 	}
 
