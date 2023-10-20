@@ -28,9 +28,6 @@ describe('Button Component', () => {
             'data-cy-id',
             'testAccordionItemButton'
         );
-        expect(accordionItemButton).toHaveClass(
-            'accordion-button no-before'
-        );
 
     });
 
@@ -43,9 +40,6 @@ describe('Button Component', () => {
         expect(accordionItemButton).toHaveAttribute(
             'data-cy-id',
             'testAccordionItemButton'
-        );
-        expect(accordionItemButton).toHaveClass(
-            'accordion-button no-before'
         );
 
     });

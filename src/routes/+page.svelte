@@ -124,4 +124,8 @@
 			<div slot="body">You've clicked on the button! {i}</div>
 		</AccordionItem>
 	{/each}
+
+	<AccordionItem>
+		<div slot="button">Click me!</div>
+	</AccordionItem>
 </div>

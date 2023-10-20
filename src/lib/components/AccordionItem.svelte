@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
+	import Icon from './Icon.svelte';
+	import { CHEVRON_SVG } from '$lib/config/constants';
+	import { Direction } from '$lib/enums/direction.enum';
 
 	export let open = false;
 	export let disabled = false;
@@ -16,8 +19,6 @@
 </script>
 
 <button
-	class:rotate={open}
-	class:no-before={!showBody || !$$slots.body}
 	class="accordion-button {buttonClasses}"
 	{disabled}
 	data-cy-id={buttonTestId}
@@ -28,6 +29,11 @@
 		}
 	}}
 >
+	{#if (showBody && $$slots.body)}
+		<div class="chevron">
+			<Icon height={17} width={17} iconSVG={CHEVRON_SVG} direction={open ? Direction.Down : Direction.Up}/>
+		</div>
+	{/if}
 	<slot name="button" />
 </button>
 
@@ -57,7 +63,7 @@
 		padding-top: var(--accordion-button-pt, 0.75rem);
 		padding-right: var(--accordion-button-pr, 1rem);
 		padding-bottom: var(--accordion-button-pb, 0.75rem);
-		padding-left: var(--accordion-button-pl, 2rem);
+		padding-left: var(--accordion-button-pl, 1rem);
 
 		border-top: var(--accordion-button-border-t, 1px);
 		border-left: var(--accordion-button-border-l, 1px);
@@ -66,29 +72,6 @@
 
 		border-style: var(--accordion-button-border-style, solid);
 		border-color: var(--accordion-button-border-color, #ccc);
-
-		&.no-before {
-			padding-top: var(--accordion-button-no-arrow-pt, 0.75rem);
-			padding-right: var(--accordion-button-no-arrow-pr, 1rem);
-			padding-bottom: var(--accordion-button-no-arrow-pb, 0.75rem);
-			padding-left: var(--accordion-button-no-arrow-pl, 1rem);
-		}
-
-		&.no-before::before {
-			content: none;
-		}
-
-		&::before {
-			content: var(--accordion-button-chevron-url, url('$lib/assets/chevron-up.svg'));
-			position: var(--accordion-button-chevron-position, absolute);
-			margin-left: var(--accordion-button-chevron-ml, -1.5rem);
-			transform: var(--accordion-button-transform, rotate(180deg));
-			transition: var(--accordion-button-chevron-transition, transform 0.2s ease-in-out);
-		}
-
-		&.rotate::before {
-			transform: var(--accordion-button-transform-rotate, rotate(0deg));
-		}
 
 		&:hover {
 			background-color: var(--accordion-button-hover-bg-color, #f4f9fb);
@@ -100,6 +83,13 @@
 			opacity: var(--accordion-button-disabled-opacity, 1);
 			cursor: var(--accordion-button-disabled-cursor, not-allowed);
 		}
+	}
+
+	.chevron {
+		padding-top: var(--accordion-chevron-pt, 0rem);
+		padding-right: var(--accordion-chevron-pr, 0.75rem);
+		padding-bottom: var(--accordion-chevron-pb, 0rem);
+		padding-left: var(--accordion-chevron-pl, 0rem);
 	}
 
 	.accordion-body {
