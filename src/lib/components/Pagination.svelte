@@ -10,7 +10,14 @@
 	export let rows: any = [];
 	export let perPage = 20;
 	export let trimmedRows;
-
+	export let paginationTestId: string;
+	export let prevPageBtnTestId: string;
+	export let nextPageBtnTestId: string;
+	export let firstPageBtnTestId: string;
+	export let lastPageBtnTestId: string;
+	export let currPageTestId: string;
+	export let totalPagesTestId: string;
+	
 	$: totalRows = rows.length;
 	$: currentPage = 0;
 	$: totalPages = Math.ceil(totalRows / perPage);
@@ -28,7 +35,7 @@
 </script>
 
 {#if totalRows && totalRows > perPage}
-	<div class="pagination">
+	<div class="pagination" data-cy-id={paginationTestId}>
 		<a
 			class="pagination-icon"
 			href={null}
@@ -38,6 +45,7 @@
 			on:click={() => {
 				setCurrentPage(0);
 			}}
+			data-cy-id={firstPageBtnTestId}
 		>
 			<Icon
 				classes={currentPage === 0 ? 'disabled' : 'cursor-pointer'}
@@ -56,6 +64,7 @@
 			on:click={() => {
 				if (currentPage !== 0) setCurrentPage(currentPage - 1);
 			}}
+			data-cy-id={prevPageBtnTestId}
 		>
 			<Icon
 				classes={currentPage === 0 ? 'disabled' : 'cursor-pointer'}
@@ -65,7 +74,7 @@
 				fill={currentPage === 0 ? '#B3B3B3' : '#666'}
 			/>
 		</a>
-		<p>{currentPage + 1} of {totalPages}</p>
+		<p><span data-cy-id={currPageTestId}>{currentPage + 1}</span> of <span data-cy-id={totalPagesTestId}>{totalPages}</span></p>
 		<a
 			class="pagination-icon"
 			href={null}
@@ -75,6 +84,7 @@
 			on:click={() => {
 				if (currentPage !== totalPages - 1) setCurrentPage(currentPage + 1);
 			}}
+			data-cy-id={nextPageBtnTestId}
 		>
 			<Icon
 				classes={currentPage === totalPages - 1 ? 'disabled' : 'cursor-pointer'}
@@ -93,6 +103,7 @@
 			on:click={() => {
 				setCurrentPage(totalPages - 1);
 			}}
+			data-cy-id={lastPageBtnTestId}
 		>
 			<Icon
 				classes={currentPage === totalPages - 1 ? 'disabled' : 'cursor-pointer'}
