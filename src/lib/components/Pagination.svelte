@@ -10,6 +10,7 @@
 	export let rows: any = [];
 	export let perPage = 20;
 	export let trimmedRows;
+	export let paginationTestId: string;
 	export let prevPageBtnTestId: string;
 	export let nextPageBtnTestId: string;
 	export let firstPageBtnTestId: string;
@@ -34,7 +35,7 @@
 </script>
 
 {#if totalRows && totalRows > perPage}
-	<div class="pagination">
+	<div class="pagination" data-cy-id={paginationTestId}>
 		<a
 			class="pagination-icon"
 			href={null}
