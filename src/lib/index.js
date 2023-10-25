@@ -10,6 +10,7 @@ export { default as Pagination } from './components/Pagination.svelte';
 export { default as RadioInput } from './components/RadioInput.svelte';
 export { default as Select } from './components/Select.svelte';
 export { default as SvelteToast } from './components/Toast/SvelteToast.svelte';
+export { default as Tabs } from './components/Tabs.svelte';
 export { default as Tooltip } from './components/Tooltip.svelte';
 export { default as UserProfileMenu } from './components/UserProfileMenu.svelte';
 export { toast } from './components/Toast/stores.js';
