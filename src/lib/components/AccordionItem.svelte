@@ -31,7 +31,7 @@
 >
 	{#if (showBody && $$slots.body)}
 		<div class="chevron">
-			<Icon height={17} width={17} iconSVG={CHEVRON_SVG} direction={open ? Direction.Down : Direction.Up}/>
+			<Icon height={17} width={17} iconSVG={CHEVRON_SVG} direction={open ? Direction.Up : Direction.Down}/>
 		</div>
 	{/if}
 	<slot name="button" />
