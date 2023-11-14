@@ -31,7 +31,7 @@
 	function getSpinnerSize(size: Size): string {
 		switch (size) {
 			case Size.Unset:
-				return '';
+				return 'am-c-spinner__sm';
 			case Size.Small:
 				return 'am-c-spinner__sm';
 			case Size.Large:

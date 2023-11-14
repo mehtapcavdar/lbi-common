@@ -173,13 +173,73 @@
 
 
 	{#each {length: 3} as _, i}
-		<AccordionItem>
+		<AccordionItem disabled={i === 1 ? true : false}>
 			<div slot="button">Click me! {i}</div>
 			<div slot="body">You've clicked on the button! {i}</div>
 		</AccordionItem>
 	{/each}
 
 	<AccordionItem>
-		<div slot="button">Click me!</div>
+		<div
+						slot="button"
+						class="product-instance-row grid col-span-12 grid-cols-12 w-full"
+					>
+						<div
+							class="grid col-span-10 xs:col-span-11 grid-flow-row grid-cols-10 xs:grid-cols-11 gap-1"
+						>
+							<div
+								class="xs:pr-7 pr-6 truncate col-span-5 xs:col-span-3 cursor-default"
+								data-cy-id="tableBodyRowDataProductName"
+							>
+								Product Name
+							</div>
+							<div
+								class="xs:pr-6 ml-[-1.5rem] xs:ml-[-2rem] truncate col-span-5 xs:col-span-3 cursor-default"
+								data-cy-id="tableBodyRowDataLicenseOwnerName"
+							>
+								Legal Owner Name
+							</div>
+							<div
+								class="pr-6 ml-[-1.25rem] truncate xs:col-span-3 cursor-default hidden xs:block"
+								data-cy-id="tableBodyRowDataProductInstanceName"
+							>
+								Product Instance name
+							</div>
+							<div
+								class="pr-6 ml-[-1.5rem] truncate hidden xs:block xs:col-span-2 text-center cursor-default"
+								data-cy-id="tableBodyRowDataNumberOfLicensees"
+							>
+							5
+							</div>
+						</div>
+						<div
+							class="col-span-2 xs:col-span-1 grid-cols-2 xs:grid-cols-1 flex justify-end divide-x-2 divide-slate-300 max-h-10"
+						>
+							<div class="px-2 flex justify-center items-center" data-cy-id="iconCopyUUID">
+								<Tooltip
+									content="Some tooltip text"
+									position="left"
+									align="center"
+									animation="fade"
+									testId="tooltipCopyUUID"
+								>
+									<Icon
+										iconSVG={TRASH_SVG}
+										classes={'cursor-pointer'}
+										tabIndex={0}
+										clickLogic={(event) => {
+											event.stopPropagation();
+											console.log(event)
+										}}
+										width={17}
+										height={17}
+									/>
+								</Tooltip>
+							</div>
+						</div>
+					</div>
+					<div slot="body">
+						You've managed it!
+					</div>
 	</AccordionItem>
 </div>
