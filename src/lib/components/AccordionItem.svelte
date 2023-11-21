@@ -18,13 +18,13 @@
 	const handleClick = () => (open = !open);
 </script>
 
-<div class={disabled ? 'not-allowed' : ''}>
+<div class={disabled ? 'accordion-button__not-allowed' : ''}>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- svelte-ignore a11y-interactive-supports-focus -->
 	<div
 		role="button"
 		tabindex="0"
-		class="accordion-button {buttonClasses} {disabled ? 'disabled' : ''}"
+		class="accordion-button {buttonClasses} {disabled ? 'accordion-button__disabled' : ''}"
 		data-cy-id={buttonTestId}
 		on:click={(e) => {
 			if ($$slots.body && showBody) {
@@ -90,7 +90,7 @@
 			background-color: var(--accordion-button-hover-bg-color, #f4f9fb);
 		}
 
-		&.disabled {
+		&.accordion-button__disabled {
 			color: var(--accordion-button-disabled-color, #b3b3b3);
 			background-color: var(--accordion-button-disabled-bg-color, #e6e6e6);
 			opacity: var(--accordion-button-disabled-opacity, 1);
@@ -107,7 +107,7 @@
 		outline: 0;
 	}
 
-	.not-allowed {
+	.accordion-button__not-allowed {
 		cursor: var(--accordion-button-disabled-cursor, not-allowed);
 	}
 

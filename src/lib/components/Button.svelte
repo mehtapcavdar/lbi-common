@@ -15,8 +15,6 @@
 
 	function getButtonSize(size: Size): string {
 		switch (size) {
-			case Size.Unset:
-				return '';
 			case Size.Small:
 				return 'am-c-df_btn__sm';
 			case Size.Large:
@@ -30,8 +28,6 @@
 
 	function getSpinnerSize(size: Size): string {
 		switch (size) {
-			case Size.Unset:
-				return 'am-c-spinner__sm';
 			case Size.Small:
 				return 'am-c-spinner__sm';
 			case Size.Large:
@@ -39,7 +35,7 @@
 			case Size.XLarge:
 				return 'am-c-spinner__xl';
 			default:
-				return 'am-c-spinner__xl';
+				return 'am-c-spinner__sm';
 		}
 	}
 </script>
