@@ -5,12 +5,13 @@
 	import { CROSS_SVG, SEARCH_SVG } from '../config/constants';
 
 	export let placeholderLabel: string;
-	export let searchErrorMessage: string;
-	export let ALLOWED_CHARS_SEARCH_REGEX: RegExp;
-
+	
 	export let testId = '';
 	export let searchValue = '';
-
+	export let searchErrorMessage = '';
+	// Default value is everything!
+	export let ALLOWED_CHARS_SEARCH_REGEX= /[\s\S]*$/;
+	
 	const dispatch = createEventDispatcher();
 	function loadResults() {
 		dispatch('loadResults');
@@ -22,8 +23,8 @@
 	}
 
 	function isValid(searchValue: string): boolean {
-		return ALLOWED_CHARS_SEARCH_REGEX.test(searchValue);
-	}
+			return ALLOWED_CHARS_SEARCH_REGEX.test(searchValue);
+		}
 </script>
 
 <div class="relative search-container w-full">
