@@ -46,7 +46,7 @@
 				<Icon height={17} width={17} iconSVG={CHEVRON_SVG} fill={disabled ? '#b3b3b3' : '#005eb8'} direction={open ? Direction.Up : Direction.Down}/>
 			</div>
 		{/if}
-		<slot class={disabled ? 'not-allowed' : ''} name="button" />
+		<slot name="button" />
 	</div>
 </div>
 
