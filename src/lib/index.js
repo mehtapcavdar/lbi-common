@@ -13,6 +13,8 @@ export { default as SvelteToast } from './components/Toast/SvelteToast.svelte';
 export { default as Tabs } from './components/Tabs.svelte';
 export { default as Tooltip } from './components/Tooltip.svelte';
 export { default as UserProfileMenu } from './components/UserProfileMenu.svelte';
+export { default as Search } from './components/Search.svelte';
+export { default as YesNoPopup } from './components/YesNoPopup.svelte';
 export { toast } from './components/Toast/stores.js';
 export {
 	DEFAULT_DEBOUNCE_TIME,
