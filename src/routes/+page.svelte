@@ -12,12 +12,15 @@
 	import Pagination from '$lib/components/Pagination.svelte';
 	import Tabs from '$lib/components/Tabs.svelte';
 	import Search from '$lib/components/Search.svelte';
+	import YesNoPopup from '$lib/components/YesNoPopup.svelte';
 
 	const PLUS_CIRCLE_SVG: string =
 		'M384 250v12c0 6.6-5.4 12-12 12h-98v98c0 6.6-5.4 12-12 12h-12c-6.6 0-12-5.4-12-12v-98h-98c-6.6 0-12-5.4-12-12v-12c0-6.6 5.4-12 12-12h98v-98c0-6.6 5.4-12 12-12h12c6.6 0 12 5.4 12 12v98h98c6.6 0 12 5.4 12 12zm120 6c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-32 0c0-119.9-97.3-216-216-216-119.9 0-216 97.3-216 216 0 119.9 97.3 216 216 216 119.9 0 216-97.3 216-216z';
 	
 	let values;
 	let searchValue: string;
+	let belongingId = 'a1'
+	let selectedId = 'a2';
 
 	let items = [
 		{ label: 'Applications', value: 1, component: Button },
@@ -95,9 +98,29 @@
 	/>
 
 	<Button
-		label={'mcEierpunsch'}
+		label={'Trigger YesNoPopup'}
 		additionalClasses="border-red-900"
-		clickLogic={() => toast.success('hello')}
+		clickLogic={() => selectedId = 'a1'}
+	/>
+
+	<YesNoPopup
+		{belongingId}
+		{selectedId}
+		headerText="Delete"
+		questionText="Do you want to delete?"
+		confirmationText="Delete"
+		cancelationText="Cancel"
+		popupTestingId="permissionDeletionPopup"
+		headerTestingId="permissionDeletionPopupHeader"
+		questionTestingId="permissionDeletionPopupQuestion"
+		confirmationTestingId="permissionDeletionPopupConfirmationButton"
+		cancelationTestingId="permissionDeletionPopupCancelationButton"
+		on:actionCanceled={() => {
+			selectedId = '';
+		}}
+		on:actionConfirmed={() => {
+			alert("DELETED!");
+		}}
 	/>
 
 	<Checkbox

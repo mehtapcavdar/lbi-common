@@ -11,18 +11,19 @@
 
 	export let belongingId: string;
 	export let selectedId: string;
-	export let loadingOnWaitingForResponse: boolean;
-
+	
 	export let headerText: string;
 	export let questionText: string;
 	export let confirmationText: string;
 	export let cancelationText: string;
-
+	
 	export let popupTestingId = '';
 	export let headerTestingId = '';
 	export let questionTestingId = '';
 	export let confirmationTestingId = '';
 	export let cancelationTestingId = '';
+	
+	export let loadingOnWaitingForResponse = false;
 
 	const dispatch = createEventDispatcher();
 
