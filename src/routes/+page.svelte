@@ -93,7 +93,7 @@
 	/>
 
 	<Button
-		label={'mcEierpunsch'}
+		label={'Trigger YesNoPopup'}
 		additionalClasses="border-red-900"
 		clickLogic={() => toast.success('hello')}
 	/>
@@ -173,13 +173,13 @@
 
 
 	{#each {length: 3} as _, i}
-		<AccordionItem>
+		<AccordionItem disabled={i === 1 ? true : false}>
 			<div slot="button">Click me! {i}</div>
 			<div slot="body">You've clicked on the button! {i}</div>
 		</AccordionItem>
 	{/each}
 
 	<AccordionItem>
-		<div slot="button">Click me!</div>
+		<div slot="button">Click Me!</div>
 	</AccordionItem>
 </div>

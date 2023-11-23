@@ -18,24 +18,37 @@
 	const handleClick = () => (open = !open);
 </script>
 
-<button
-	class="accordion-button {buttonClasses}"
-	{disabled}
-	data-cy-id={buttonTestId}
-	on:click={(e) => {
-		if ($$slots.body && showBody) {
-			handleClick();
-			clickLogic ? clickLogic(e) : null;
-		}
-	}}
->
-	{#if (showBody && $$slots.body)}
-		<div class="chevron">
-			<Icon height={17} width={17} iconSVG={CHEVRON_SVG} direction={open ? Direction.Up : Direction.Down}/>
-		</div>
-	{/if}
-	<slot name="button" />
-</button>
+<div class={disabled ? 'accordion-button__not-allowed' : ''}>
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<!-- svelte-ignore a11y-interactive-supports-focus -->
+	<div
+		role="button"
+		tabindex="0"
+		class="accordion-button {buttonClasses} {disabled ? 'accordion-button__disabled' : ''}"
+		data-cy-id={buttonTestId}
+		on:click={(e) => {
+			if ($$slots.body && showBody) {
+				handleClick();
+				clickLogic ? clickLogic(e) : null;
+			}
+		}}
+		on:keydown={(e) => {
+			if (e.code === 'Enter' || e.code === 'Space') {
+				if ($$slots.body && showBody && !disabled) {
+					handleClick();
+					clickLogic ? clickLogic(e) : null;
+				}
+			}
+		}}
+	>
+		{#if (showBody && $$slots.body)}
+			<div class="chevron" aria-label="Chevron">
+				<Icon height={17} width={17} iconSVG={CHEVRON_SVG} fill={disabled ? '#b3b3b3' : '#005eb8'} direction={open ? Direction.Up : Direction.Down}/>
+			</div>
+		{/if}
+		<slot name="button" />
+	</div>
+</div>
 
 {#if open && $$slots.body && showBody}
 	<div
@@ -77,12 +90,25 @@
 			background-color: var(--accordion-button-hover-bg-color, #f4f9fb);
 		}
 
-		&[disabled] {
+		&.accordion-button__disabled {
 			color: var(--accordion-button-disabled-color, #b3b3b3);
 			background-color: var(--accordion-button-disabled-bg-color, #e6e6e6);
 			opacity: var(--accordion-button-disabled-opacity, 1);
-			cursor: var(--accordion-button-disabled-cursor, not-allowed);
+			pointer-events: none;
 		}
+	}
+
+	div.accordion-button:focus {
+		position: relative;
+		box-shadow: var(--accordion-button-focus-box-shadow, 0 0 0 0.25rem rgba(0, 94, 184, 0.25));
+    	z-index: var(--accordion-button-focus-shadow-z-index, 100);
+	}
+	div.accordion-button:focus:not(:focus-visible) {
+		outline: 0;
+	}
+
+	.accordion-button__not-allowed {
+		cursor: var(--accordion-button-disabled-cursor, not-allowed);
 	}
 
 	.chevron {
@@ -106,9 +132,5 @@
 
 		border-style: var(--accordion-body-border-style, solid);
 		border-color: var(--accordion-body-border-color, #ccc);
-	}
-
-	button:focus:not(:focus-visible) {
-		outline: 0;
 	}
 </style>
