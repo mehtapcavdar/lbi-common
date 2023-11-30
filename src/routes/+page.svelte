@@ -173,13 +173,13 @@
 
 
 	{#each {length: 3} as _, i}
-		<AccordionItem disabled={i === 1 ? true : false}>
+		<AccordionItem disabled={i !== 1 ? true : false} showBody={i !== 2 ? true : false} fillEmptyChevronSpace={true}>
 			<div slot="button">Click me! {i}</div>
 			<div slot="body">You've clicked on the button! {i}</div>
 		</AccordionItem>
 	{/each}
 
-	<AccordionItem>
+	<AccordionItem >
 		<div slot="button">Click Me!</div>
 	</AccordionItem>
 </div>

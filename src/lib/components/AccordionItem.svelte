@@ -7,6 +7,7 @@
 	export let open = false;
 	export let disabled = false;
 	export let showBody = true;
+	export let fillEmptyChevronSpace = false;
 	export let clickLogic: null | ((...args: any) => any) = null;
 	export let animationDurationForShowingBody = 200;
 	export let animationDurationForHidingBody = 0;
@@ -42,9 +43,11 @@
 		}}
 	>
 		{#if (showBody && $$slots.body)}
-			<div class="chevron" aria-label="Chevron">
+			<div class="accordion-button-chevron" aria-label="Chevron">
 				<Icon height={17} width={17} iconSVG={CHEVRON_SVG} fill={disabled ? '#b3b3b3' : '#005eb8'} direction={open ? Direction.Up : Direction.Down}/>
 			</div>
+		{:else if !(showBody && $$slots.body) && fillEmptyChevronSpace}
+			<div class="accordion-button-chevron-space-filler" />
 		{/if}
 		<slot name="button" />
 	</div>
@@ -100,8 +103,9 @@
 
 	div.accordion-button:focus {
 		position: relative;
+		outline: none;
 		box-shadow: var(--accordion-button-focus-box-shadow, 0 0 0 0.25rem rgba(0, 94, 184, 0.25));
-    	z-index: var(--accordion-button-focus-shadow-z-index, 100);
+    	z-index: var(--accordion-button-focus-shadow-z-index, 1);
 	}
 	div.accordion-button:focus:not(:focus-visible) {
 		outline: 0;
@@ -111,11 +115,15 @@
 		cursor: var(--accordion-button-disabled-cursor, not-allowed);
 	}
 
-	.chevron {
-		padding-top: var(--accordion-chevron-pt, 0rem);
-		padding-right: var(--accordion-chevron-pr, 0.75rem);
-		padding-bottom: var(--accordion-chevron-pb, 0rem);
-		padding-left: var(--accordion-chevron-pl, 0rem);
+	.accordion-button-chevron {
+		padding-top: var(--accordion-button-chevron-pt, 0rem);
+		padding-right: var(--accordion-button-chevron-pr, 0.75rem);
+		padding-bottom: var(--accordion-button-chevron-pb, 0rem);
+		padding-left: var(--accordion-button-chevron-pl, 0rem);
+	}
+	
+	.accordion-button-chevron-space-filler {
+		min-width: var(--accordion-button-chevron-space-filler-size, 29px);
 	}
 
 	.accordion-body {
