@@ -18,6 +18,8 @@
 	export let required: boolean = false;
 	export let isReadOnly: boolean = false;
 	export let isDisabled: boolean = false;
+	export let textareaInput: boolean = false;
+	export let resizableTextarea = true;
 	export let testId: string = '';
 	const isTypeNumber: boolean = type === InputTypes.Number;
 
@@ -25,9 +27,9 @@
 		node.type = type;
 	}
 
-	function handleNumbers(){
-		inputValue = removeLeadingZero(inputValue)
-		if(min !== '' && +min > +inputValue) {
+	function handleNumbers() {
+		inputValue = removeLeadingZero(inputValue);
+		if (min !== '' && +min > +inputValue) {
 			inputValue = min.toString();
 		} else if (max !== '' && +max < +inputValue) {
 			inputValue = max.toString();
@@ -41,35 +43,55 @@
 			*
 		{/if}</label
 	>
-	<div class="relative {labelName ? 'pt-2' : ''}">
-		<input
-			data-cy-id={testId}
-			disabled={isDisabled}
-			readonly={isReadOnly}
-			class="appearance-none block w-full px-3 py-2 border border-amadeusgray300 placeholder-amadeusgray500 text-amadeusgray900 focus:outline-none focus:border-amadeusblue focus:z-10 sm:text-sm mb-1 focus:border rounded-sm min-w-fit mr-0
-        {inputError ? 'border-amadeusred' : ''} {isTypeNumber
-				? 'pr-0'
-				: ''} {classesForInput}"
-			bind:value={inputValue}
-			on:blur={(event) => {
-				dispatch('onInputBlur', event),
+	<div class="lbi-input--wrapper-position {labelName ? 'lbi-input--wrapper-padding' : ''}">
+		{#if !textareaInput}
+			<input
+				data-cy-id={testId}
+				disabled={isDisabled}
+				readonly={isReadOnly}
+				class="lbi-input--field
+					{inputError ? 'lbi-input--field-error-border' : ''} 
+					{isTypeNumber ? 'lbi-input--field-number-padding' : ''} 
+					{classesForInput}"
+				bind:value={inputValue}
+				on:blur={(event) => {
+					dispatch('onInputBlur', event);
 					isTypeNumber ? (handleNumbers()) : null;
-			}}
-			on:input={(event) => dispatch('onInput', event)}
-			on:change={(event) => dispatch('onInputChanges', event)}
-			use:typeAction
-			{placeholder}
-			name={inputName}
-			id={inputName}
-			{min}
-			{max}
-			autocomplete="off"
-		/>
-		{#if extraSign}
-			<div class="absolute bottom-2 z-50 left-1">{extraSign}</div>
+				}}
+				on:input={(event) => dispatch('onInput', event)}
+				on:change={(event) => dispatch('onInputChanges', event)}
+				use:typeAction
+				{placeholder}
+				name={inputName}
+				id={inputName}
+				{min}
+				{max}
+				autocomplete="off"
+			/>
+			{#if extraSign}
+				<div class="lbi-input--extra-sign">{extraSign}</div>
+			{/if}
+		{:else}
+			<textarea
+				data-cy-id={testId}
+				disabled={isDisabled}
+				readonly={isReadOnly}
+				class:lbi-input-textarea-non-resizable={!resizableTextarea}
+				class="lbi-input--field
+					{inputError ? 'lbi-input--field-error-border' : ''} 
+					{classesForInput}"
+				bind:value={inputValue}
+				on:blur={(event) => dispatch('onInputBlur', event)}
+				on:input={(event) => dispatch('onInput', event)}
+				on:change={(event) => dispatch('onInputChanges', event)}
+				{placeholder}
+				name={inputName}
+				id={inputName}
+				autocomplete="off"
+			/>
 		{/if}
 	</div>
-	<div data-cy-id="errormessage" class="text-amadeusred text-xs min-h-[20px]">
+	<div data-cy-id="errormessage" class="lbi-input--error-message">
 		{inputError}
 	</div>
 </div>
@@ -77,5 +99,67 @@
 <style>
 	::placeholder {
 		font-style: italic;
+		color: #808080;
+	}
+
+	.lbi-input--extra-sign {
+		position: absolute;
+		bottom: 0.5rem;
+		z-index: 50;
+		left: 0.25rem;
+	}
+
+	.lbi-input--error-message {
+		color: #c60000;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		min-height: 20px;
+	}
+
+	.lbi-input--field {
+		appearance: none;
+		display: block;
+		width: 100%;
+		min-width: auto;
+		padding: 0.5rem 0.75rem;
+		border: 1px solid #b3b3b3;
+		border-radius: 0.125rem;
+		color: #1a1a1a;
+		margin-bottom: 0.25rem;
+		margin-right: 0;
+	}
+	
+	.lbi-input-textarea-non-resizable {
+        resize: none;
+    }
+
+	@media (min-width: 640px) {
+			.lbi-input--field {
+				font-size: 0.875rem;
+				line-height: 1.25rem;
+			}
+		}
+
+	.lbi-input--field:focus {
+		outline: 2px solid transparent;
+   		outline-offset: 2px;
+		border-color: #005eb8;
+		z-index: 10;
+	}
+
+	.lbi-input--field-error-border {
+		border-color: #c60000;
+	}
+
+	.lbi-input--field-number-padding {
+		padding-right: 0;
+	}
+
+	.lbi-input--wrapper-position {
+		position: relative;
+	}
+
+	.lbi-input--wrapper-padding {
+		padding-top: 0.5rem;
 	}
 </style>

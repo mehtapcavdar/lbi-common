@@ -6,7 +6,7 @@
 	export let height: number = 22;
 	export let width: number = 22;
 	export let fill: string = '#005eb8';
-	export let direction: Direction = Direction.Left;
+	export let direction: Direction = Direction.Up;
 	export let clickLogic: Function | null = null;
 	export let classes: string = '';
 	export let testId: string = '';
@@ -15,28 +15,28 @@
 	function getIconDirection(direction: Direction): string {
 		switch (direction) {
 			case Direction.Left:
-				return 'rotate-90';
-			case Direction.Right:
 				return '-rotate-90';
+			case Direction.Right:
+				return 'rotate-90';
 			case Direction.Up:
-				return 'rotate-180';
-			case Direction.Down:
 				return 'rotate-0';
+			case Direction.Down:
+				return 'rotate-180';
 
 			default:
-				return 'rotate-90';
+				return 'rotate-0';
 		}
 	}
 
 	function handleKeyboardPress(e: KeyboardEvent): Function | null {
 		if (clickLogic) {
-			switch(e.key) {
-				case 'Enter': 
+			switch (e.key) {
+				case 'Enter':
 					return clickLogic(e);
 				default:
 					return null;
 			}
-		} 
+		}
 		return null;
 	}
 </script>
@@ -50,11 +50,26 @@
 	{width}
 	xmlns="http://www.w3.org/2000/svg"
 	class="{getIconDirection(direction)} {classes}"
-	fill={fill}
+	{fill}
 	data-cy-id={testId}
 	{viewBox}
 	tabindex={clickLogic ? tabIndex : null}
-	role={clickLogic ? 'button': null}
+	role={clickLogic ? 'button' : null}
 >
 	<path d={iconSVG} />
 </svg>
+
+<style>
+	.rotate-0 {
+		transform: rotate(0deg);
+	}
+	.rotate-90 {
+		transform: rotate(90deg);
+	}
+	.-rotate-90 {
+		transform: rotate(-90deg);
+	}
+	.rotate-180 {
+		transform: rotate(180deg);
+	}
+</style>

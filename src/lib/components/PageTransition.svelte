@@ -7,8 +7,8 @@
 
 {#key url}
 	<div
-		in:fly={{ y: -5, duration: pageTransitionDuration, delay: pageTransitionDuration }}
-		out:fly={{ y: 5, duration: pageTransitionDuration }}
+		in:fly|global={{ y: -5, duration: pageTransitionDuration, delay: pageTransitionDuration }}
+		out:fly|global={{ y: 5, duration: pageTransitionDuration }}
 	>
 		<slot />
 	</div>

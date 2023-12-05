@@ -7,21 +7,22 @@
 	export let loadingAnimationDuration: number = LOADING_ANIMATION_DELAY_AND_DURATION;
 	export let removeAnimation: boolean = false;
 	export let isScreenCentered: boolean = false;
+	export let classes: string = '';
 	export let testId: string = '';
 </script>
 
 {#if removeAnimation}
 	<div
-		class={isScreenCentered ? 'am-c-loading__screen-center' : ''}
+		class="{classes} {isScreenCentered ? 'am-c-loading__screen-center' : ''}"
 		data-cy-id={testId !== '' ? testId : null}
 	>
 		<img {width} {height} src="images/spinner.svg" alt="Loading..." class="am-c-loading" />
 	</div>
 {:else}
 	<div
-		class={isScreenCentered ? 'am-c-loading__screen-center' : ''}
+		class="{classes} {isScreenCentered ? 'am-c-loading__screen-center' : ''}"
 		data-cy-id={testId !== '' ? testId : null}
-		out:fade={{ duration: loadingAnimationDuration }}
+		out:fade|global={{ duration: loadingAnimationDuration }}
 	>
 		<img {width} {height} src="images/spinner.svg" alt="Loading..." class="am-c-loading" />
 	</div>
@@ -31,7 +32,6 @@
 	.am-c-loading {
 		animation: rotation 1s infinite linear;
 	}
-	
 	.am-c-loading__screen-center {
 		top: 50%;
 		left: 50%;

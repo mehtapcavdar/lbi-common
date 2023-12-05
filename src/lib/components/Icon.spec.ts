@@ -30,8 +30,8 @@ describe('Icon Component', () => {
 	});
 
 	test('should test click event', async () => {
-        const clickFunc = vi.fn();
-		const { container } = render(Icon, { props: {...iconProps, clickLogic: clickFunc} });
+		const clickFunc = vi.fn();
+		const { container } = render(Icon, { props: { ...iconProps, clickLogic: clickFunc } });
 		const svgIcon = container.querySelector("[data-cy-id='test-icon']") as HTMLImageElement;
 
 		await fireEvent.click(svgIcon);
@@ -39,11 +39,11 @@ describe('Icon Component', () => {
 	});
 
 	test('should fire click logic on keypress', async () => {
-        const clickFunc = vi.fn();
-		const { container } = render(Icon, { props: {...iconProps, clickLogic: clickFunc} });
+		const clickFunc = vi.fn();
+		const { container } = render(Icon, { props: { ...iconProps, clickLogic: clickFunc } });
 		const svgIcon = container.querySelector("[data-cy-id='test-icon']") as HTMLImageElement;
 
-		await  fireEvent.keyPress(svgIcon, { key: "Enter", code: 13, charCode: 13 });
+		await fireEvent.keyPress(svgIcon, { key: 'Enter', code: 13, charCode: 13 });
 		expect(clickFunc).toHaveBeenCalled();
 	});
 });

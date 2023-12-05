@@ -22,12 +22,11 @@
 
 <div role="radiogroup" data-cy-id={testId} class="radiogroup {classesForRadioGroup}">
 	{#if labelText}
-		<span class="label {classesForLabel}">
-			{labelText}
-			{#if isRequired}
-				<span aria-hidden="true" class="required-star"> * </span>
-			{/if}
-		</span>
+		<label for={inputName} class="label {classesForLabel}"
+			>{labelText}{#if isRequired}
+				*
+			{/if}</label
+		>
 	{/if}
 
 	{#each options as option, index}
@@ -123,12 +122,8 @@
 	}
 
 	.label {
-		font-weight: 700;
-		margin-bottom: 0.5rem;
-	}
-
-	.required-star {
 		font-weight: 400;
+		margin-bottom: 0.5rem;
 	}
 
 	.input-wrapper {
@@ -155,7 +150,7 @@
 	.error-wrapper {
 		color: var(--amadeus-color-red);
 		font-size: 0.75rem;
-    	line-height: 1rem;
+		line-height: 1rem;
 		min-height: 20px;
 	}
 

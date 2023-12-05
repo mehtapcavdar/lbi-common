@@ -30,5 +30,4 @@ export const isInViewport = (element) => {
 		rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
 		rect.right <= (window.innerWidth || document.documentElement.clientWidth)
 	);
-  };
-  
+};
